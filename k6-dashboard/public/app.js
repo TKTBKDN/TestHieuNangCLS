@@ -540,10 +540,13 @@
     var kv = {};
     lines.forEach(function (l) { var m = l.match(/^(.+?):\s*(.+)$/); if (m) kv[m[1].trim()] = m[2].trim(); });
     metricsGrid.classList.remove('hidden');
+    var isSpike = Number($('sleepSeconds').value || '1') === 0;
+    var errorLimit = isSpike ? 5 : 1;
+    var durationLimit = isSpike ? 8000 : 5000;
     setCard('metricRequests', 'metricRequestsValue', kv['Tổng request'], null);
-    setCard('metricLoginRate', 'metricLoginRateValue', kv['Lỗi đăng nhập'], rateClass(parseFloat(kv['Lỗi đăng nhập'])));
-    setCard('metricApiRate', 'metricApiRateValue', kv['Lỗi API'], rateClass(parseFloat(kv['Lỗi API'])));
-    setCard('metricP95', 'metricP95Value', kv['Thời gian P95'], msClass(parseFloat(kv['Thời gian P95'])));
+    setCard('metricLoginRate', 'metricLoginRateValue', kv['Lỗi đăng nhập'], rateClass(parseFloat(kv['Lỗi đăng nhập']), errorLimit));
+    setCard('metricApiRate', 'metricApiRateValue', kv['Lỗi API'], rateClass(parseFloat(kv['Lỗi API']), errorLimit));
+    setCard('metricP95', 'metricP95Value', kv['Thời gian P95'], msClass(parseFloat(kv['Thời gian P95']), durationLimit));
   }
 
   function setCard(cid, vid, text, cls) {
@@ -551,29 +554,40 @@
     $(vid).textContent = text;
     $(cid).className = 'metric-card' + (cls ? ' ' + cls : '');
   }
-  function rateClass(v) { return v === 0 ? 'success' : v < 10 ? 'warning' : 'danger'; }
-  function msClass(v) { return v < 1000 ? 'success' : v < 5000 ? 'warning' : 'danger'; }
+  function rateClass(v, limit) {
+    var lim = limit !== undefined ? limit : 10;
+    return v === 0 ? 'success' : v <= lim ? 'warning' : 'danger';
+  }
+  function msClass(v, limit) {
+    var lim = limit !== undefined ? limit : 5000;
+    return v < 1000 ? 'success' : v <= lim ? 'warning' : 'danger';
+  }
 
   /* ========== DETAILED REPORT (from JSON) ========== */
   function displayResult(data) {
     if (!data || !data.metrics) return;
     var m = data.metrics;
     metricsGrid.classList.remove('hidden');
+    var meta = data.metadata || {};
+    var isSpike = meta.sleepSeconds === 0;
+    var errorLimit = isSpike ? 5 : 1;
+    var durationLimit = isSpike ? 8000 : 5000;
+
     if (m.http_reqs) setCard('metricRequests', 'metricRequestsValue', String(m.http_reqs.values.count), null);
     if (m.login_failures) {
       var lr = (m.login_failures.values.rate * 100).toFixed(2) + '%';
-      setCard('metricLoginRate', 'metricLoginRateValue', lr, rateClass(parseFloat(lr)));
+      setCard('metricLoginRate', 'metricLoginRateValue', lr, rateClass(parseFloat(lr), errorLimit));
     }
     if (m.api_failures) {
       var ar = (m.api_failures.values.rate * 100).toFixed(2) + '%';
-      setCard('metricApiRate', 'metricApiRateValue', ar, rateClass(parseFloat(ar)));
+      setCard('metricApiRate', 'metricApiRateValue', ar, rateClass(parseFloat(ar), errorLimit));
     }
     if (m.testgov2_request_duration) {
       var p = m.testgov2_request_duration.values['p(95)'].toFixed(2) + 'ms';
-      setCard('metricP95', 'metricP95Value', p, msClass(parseFloat(p)));
+      setCard('metricP95', 'metricP95Value', p, msClass(parseFloat(p), durationLimit));
     } else if (m.http_req_duration) {
       var p2 = m.http_req_duration.values['p(95)'].toFixed(2) + 'ms';
-      setCard('metricP95', 'metricP95Value', p2, msClass(parseFloat(p2)));
+      setCard('metricP95', 'metricP95Value', p2, msClass(parseFloat(p2), durationLimit));
     }
     renderDetailedReport(data);
   }
@@ -590,16 +604,16 @@
     var testRunDurationMs = data.state ? data.state.testRunDurationMs : null;
     var durationText = testRunDurationMs ? (testRunDurationMs / 1000).toFixed(1) + ' giây' : '—';
 
-    var allPass = true;
-    if (m.login_failures && m.login_failures.values.rate >= 0.10) allPass = false;
-    if (m.api_failures && m.api_failures.values.rate >= 0.10) allPass = false;
-    if (m.http_req_failed && m.http_req_failed.values.rate >= 0.10) allPass = false;
-    if (m.testgov2_request_duration && m.testgov2_request_duration.values['p(95)'] >= 5000) allPass = false;
+    var isSpike = meta.sleepSeconds === 0;
+    var errorThreshold = isSpike ? 0.05 : 0.01;
+    var durationThreshold = isSpike ? 8000 : 5000;
+    var ttfbThreshold = isSpike ? 6000 : 3000;
+    var avgThreshold = isSpike ? 4000 : 2000;
+    
+    var errorLimit = isSpike ? 5 : 1;
+    var durationLimit = isSpike ? 8000 : 5000;
 
-    var statusTitle = allPass ? 'ĐẠT (PASS)' : 'KHÔNG ĐẠT (FAIL)';
-    var statusColor = allPass ? '#16a34a' : '#dc2626';
-    var statusBg = allPass ? '#f0fdf4' : '#fef2f2';
-    var statusBorder = allPass ? '#bbf7d0' : '#fecaca';
+
 
     function fmtMs(val) {
       return (val !== undefined && val !== null) ? val.toFixed(2) + ' ms' : '—';
@@ -624,7 +638,7 @@
       if (!metric) return '<tr><td>' + label + '</td><td colspan="2" style="text-align:center; color:#94a3b8;">Không có dữ liệu</td></tr>';
       var v = metric.values;
       var rate = (v.rate * 100).toFixed(2) + '%';
-      var isBad = v.rate >= 0.10;
+      var isBad = v.rate > errorThreshold;
       return '<tr>' +
         '<td>' + label + '</td>' +
         '<td class="' + (isBad ? 'bad' : 'good') + '">' + rate + '</td>' +
@@ -639,9 +653,9 @@
       var rate = (cv.rate * 100).toFixed(2) + '%';
       return '<table class="data-table" style="margin:0; width:100%;">' +
         '<tr><td style="font-weight:600; width:50%;">Tổng số checks</td><td>' + total + '</td></tr>' +
-        '<tr><td style="font-weight:600; color:#16a34a;">Đạt (Pass)</td><td class="good">' + cv.passes + '</td></tr>' +
-        '<tr><td style="font-weight:600; color:#dc2626;">Không đạt (Fail)</td><td class="' + (cv.fails > 0 ? 'bad' : 'good') + '">' + cv.fails + '</td></tr>' +
-        '<tr><td style="font-weight:600;">Tỷ lệ đạt</td><td style="font-weight:700;">' + rate + '</td></tr>' +
+        '<tr><td style="font-weight:600; color:#16a34a;">Thành công</td><td class="good">' + cv.passes + '</td></tr>' +
+        '<tr><td style="font-weight:600; color:#dc2626;">Thất bại</td><td class="' + (cv.fails > 0 ? 'bad' : 'good') + '">' + cv.fails + '</td></tr>' +
+        '<tr><td style="font-weight:600;">Tỷ lệ thành công</td><td style="font-weight:700;">' + rate + '</td></tr>' +
         '</table>';
     }
 
@@ -898,12 +912,6 @@
       '    <h1>Báo cáo Kết quả Kiểm thử Hiệu năng Hệ thống</h1>\n' +
       '    <p>Thời gian xuất báo cáo: ' + new Date().toLocaleString('vi-VN') + ' | Được tạo bởi k6 Runner Dashboard</p>\n' +
       '  </div>\n' +
-      '  <div class="status-banner" style="background: ' + statusBg + '; color: ' + statusColor + '; border-color: ' + statusBorder + ';">\n' +
-      '    KẾT QUẢ ĐÁNH GIÁ CHUNG: ' + statusTitle + '<br>\n' +
-      '    <span style="font-size:13px; font-weight:normal; color:#475569; margin-top:5px; display:inline-block;">\n' +
-      (allPass ? 'Tất cả các tiêu chí lỗi (Đăng nhập, API, HTTP Request) nằm trong ngưỡng cho phép (< 10%) và thời gian phản hồi đạt yêu cầu.'
-               : 'Cảnh báo: Tỷ lệ lỗi vượt quá ngưỡng cho phép (>= 10%) hoặc có chỉ số thời gian phản hồi vượt mức giới hạn.') + '\n' +
-      '    </span>\n' +
       '  </div>\n' +
       '  <div class="section">\n' +
       '    <div class="section-title">1. Thông tin cấu hình kiểm thử (Test Configurations)</div>\n' +
@@ -1036,17 +1044,19 @@
     var testRunDurationMs = data.state ? data.state.testRunDurationMs : null;
     var html = '';
 
-    // ── Status banner ──
-    var allPass = true;
-    if (m.login_failures && m.login_failures.values.rate >= 0.10) allPass = false;
-    if (m.api_failures && m.api_failures.values.rate >= 0.10) allPass = false;
-    if (m.http_req_failed && m.http_req_failed.values.rate >= 0.10) allPass = false;
-    if (m.testgov2_request_duration && m.testgov2_request_duration.values['p(95)'] >= 5000) allPass = false;
+    var meta = data.metadata || {};
+    var isSpike = meta.sleepSeconds === 0;
+    var errorThreshold = isSpike ? 0.05 : 0.01;
+    var durationThreshold = isSpike ? 8000 : 5000;
+    var ttfbThreshold = isSpike ? 6000 : 3000;
+    var avgThreshold = isSpike ? 4000 : 2000;
     
-    html += '<div class="report-header-row" style="display: flex; gap: 16px; justify-content: space-between; align-items: center; margin-bottom: 16px;">' +
-      '<div class="report-status ' + (allPass ? 'pass' : 'fail') + '" style="flex: 1; margin: 0; text-align: left; line-height: 1.4;">' +
-      (allPass ? '✅ TEST ĐẠT — Tất cả chỉ số nằm trong ngưỡng cho phép'
-               : '❌ TEST KHÔNG ĐẠT — Một số chỉ số vượt ngưỡng cho phép') + '</div>' +
+    var errorLimit = isSpike ? 5 : 1;
+    var durationLimit = isSpike ? 8000 : 5000;
+
+
+    
+    html += '<div class="report-header-row" style="display: flex; gap: 16px; justify-content: flex-end; align-items: center; margin-bottom: 16px;">' +
       '<button id="exportReportBtn" type="button" class="btn btn-run" style="flex: 0 0 auto; width: auto; height: 50px; margin: 0; padding: 0 24px; border-radius: var(--radius-lg); font-size: 13px; display: flex; align-items: center; gap: 8px;">' +
         '📄 <span>Xuất báo cáo</span>' +
       '</button>' +
@@ -1127,7 +1137,7 @@
         '<td>' + fmtMs(d.med) + '</td>' +
         '<td>' + fmtMs(d.max) + '</td>' +
         '<td>' + fmtMs(d['p(90)']) + '</td>' +
-        '<td class="' + (d['p(95)'] !== undefined ? msClass(d['p(95)']) : '') + '">' + fmtMs(d['p(95)']) + '</td>' +
+        '<td class="' + (d['p(95)'] !== undefined ? msClass(d['p(95)'], durationLimit) : '') + '">' + fmtMs(d['p(95)']) + '</td>' +
         '<td>' + fmtMs(d['p(99)']) + '</td></tr>';
       if (m.http_req_waiting) {
         var w = m.http_req_waiting.values;
@@ -1161,27 +1171,24 @@
 
     // Error rates
     html += '<div class="report-card"><div class="report-card-header">❌ Tỷ lệ lỗi</div>' +
-      '<table class="report-table"><thead><tr><th>Loại</th><th>Tỷ lệ</th><th>Tổng mẫu</th><th>Kết quả</th></tr></thead><tbody>';
+      '<table class="report-table"><thead><tr><th>Loại</th><th>Tỷ lệ</th><th>Tổng mẫu</th></tr></thead><tbody>';
     if (m.login_failures) {
       var lv = m.login_failures.values;
       var lr2 = (lv.rate * 100).toFixed(2);
-      html += '<tr><td class="label">Đăng nhập</td><td class="' + rateClass(parseFloat(lr2)) + '">' + lr2 + '%</td>' +
-        '<td>' + (lv.passes + lv.fails) + '</td>' +
-        '<td>' + statusBadge(parseFloat(lr2)) + '</td></tr>';
+      html += '<tr><td class="label">Đăng nhập</td><td class="' + rateClass(parseFloat(lr2), errorLimit) + '">' + lr2 + '%</td>' +
+        '<td>' + (lv.passes + lv.fails) + '</td></tr>';
     }
     if (m.api_failures) {
       var av = m.api_failures.values;
       var ar2 = (av.rate * 100).toFixed(2);
-      html += '<tr><td class="label">API</td><td class="' + rateClass(parseFloat(ar2)) + '">' + ar2 + '%</td>' +
-        '<td>' + (av.passes + av.fails) + '</td>' +
-        '<td>' + statusBadge(parseFloat(ar2)) + '</td></tr>';
+      html += '<tr><td class="label">API</td><td class="' + rateClass(parseFloat(ar2), errorLimit) + '">' + ar2 + '%</td>' +
+        '<td>' + (av.passes + av.fails) + '</td></tr>';
     }
     if (m.http_req_failed) {
       var hv = m.http_req_failed.values;
       var hr = (hv.rate * 100).toFixed(2);
-      html += '<tr><td class="label">HTTP Request</td><td class="' + rateClass(parseFloat(hr)) + '">' + hr + '%</td>' +
-        '<td>' + (hv.passes + hv.fails) + '</td>' +
-        '<td>' + statusBadge(parseFloat(hr)) + '</td></tr>';
+      html += '<tr><td class="label">HTTP Request</td><td class="' + rateClass(parseFloat(hr), errorLimit) + '">' + hr + '%</td>' +
+        '<td>' + (hv.passes + hv.fails) + '</td></tr>';
     }
     html += '</tbody></table></div>';
 
@@ -1215,9 +1222,9 @@
       html += '<div class="report-card"><div class="report-card-header">✅ Kiểm tra (Checks)</div>' +
         '<table class="report-table"><thead><tr><th>Chỉ số</th><th>Giá trị</th></tr></thead><tbody>' +
         '<tr><td class="label">Tổng checks</td><td>' + total + '</td></tr>' +
-        '<tr><td class="label">Đạt</td><td class="good">' + cv.passes + '</td></tr>' +
-        '<tr><td class="label">Không đạt</td><td class="' + (cv.fails > 0 ? 'bad' : 'good') + '">' + cv.fails + '</td></tr>' +
-        '<tr><td class="label">Tỷ lệ đạt</td><td class="' + (parseFloat(passRate) >= 90 ? 'good' : 'bad') + '">' + passRate + '%</td></tr>' +
+        '<tr><td class="label">Thành công</td><td>' + cv.passes + '</td></tr>' +
+        '<tr><td class="label">Thất bại</td><td>' + cv.fails + '</td></tr>' +
+        '<tr><td class="label">Tỷ lệ thành công</td><td>' + passRate + '%</td></tr>' +
         '</tbody></table></div>';
     }
 
@@ -1291,9 +1298,9 @@
           '<td>' + (dur ? dur.min.toFixed(0) + 'ms' : '—') + '</td>' +
           '<td>' + (dur ? dur.avg.toFixed(0) + 'ms' : '—') + '</td>' +
           '<td>' + (dur ? dur.max.toFixed(0) + 'ms' : '—') + '</td>' +
-          '<td class="' + (dur ? msClass(dur['p(95)']) : '') + '">' + (dur ? dur['p(95)'].toFixed(0) + 'ms' : '—') + '</td>' +
+          '<td class="' + (dur ? msClass(dur['p(95)'], durationLimit) : '') + '">' + (dur ? dur['p(95)'].toFixed(0) + 'ms' : '—') + '</td>' +
           '<td>' + (wait ? wait['p(95)'].toFixed(0) + 'ms' : '—') + '</td>' +
-          '<td class="' + rateClass(parseFloat(fRate)) + '">' + fRate + '%</td></tr>';
+          '<td class="' + rateClass(parseFloat(fRate), errorLimit) + '">' + fRate + '%</td></tr>';
       }
       html += '</tbody></table></div></div>';
     }
@@ -1417,10 +1424,9 @@
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function statusBadge(rate) {
-    if (rate === 0) return '<span class="good">✅ Đạt</span>';
-    if (rate < 10) return '<span class="warn">⚠️ Chấp nhận</span>';
-    return '<span class="bad">❌ Không đạt</span>';
+  function statusBadge(rate, limit) {
+    var lim = limit !== undefined ? limit : 10;
+    return rate.toFixed(1) + '%';
   }
 
   function fmtBytes(bytes) {

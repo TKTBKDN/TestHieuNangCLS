@@ -123,15 +123,23 @@ const trackedApis = [
   'POST /api/examtest/set-answer-question'
 ];
 
+const SLEEP_SECONDS = Number(__ENV.SLEEP_SECONDS || '1');
+const IS_SPIKE_TEST = (SLEEP_SECONDS === 0);
+
+const errorRateThreshold = IS_SPIKE_TEST ? 'rate<=0.05' : 'rate<=0.01';
+const durationThreshold = IS_SPIKE_TEST ? 'p(95)<=8000' : 'p(95)<=5000';
+const avgDurationThreshold = IS_SPIKE_TEST ? 'avg<=4000' : 'avg<=2000';
+const ttfbThreshold = IS_SPIKE_TEST ? 'p(95)<=6000' : 'p(95)<=3000';
+
 const dynamicThresholds = {
-  login_failures: ['rate<0.10'],
-  api_failures: ['rate<0.10'],
+  login_failures: [errorRateThreshold],
+  api_failures: [errorRateThreshold],
   // Exclude internal dashboard calls (save-token, etc.) from global metrics
-  'http_req_failed{name!~"internal:.*"}': ['rate<0.10'],
-  // testgov2_request_duration: JavaScript-level timing (includes overhead)
-  testgov2_request_duration: ['p(95)<5000'],
+  'http_req_failed{name!~"internal:.*"}': [errorRateThreshold],
+  // testgov2_request_duration: precise network request duration (excludes JS engine overhead)
+  testgov2_request_duration: [durationThreshold, avgDurationThreshold],
   // http_req_waiting = TTFB = pure server processing time (most accurate)
-  'http_req_waiting{name!~"internal:.*"}': ['p(95)<5000'],
+  'http_req_waiting{name!~"internal:.*"}': [ttfbThreshold],
 };
 
 // Đăng ký thresholds giả cho mỗi API để k6 xuất thông tin chi tiết của API đó vào kết quả JSON
@@ -285,7 +293,7 @@ export default function () {
     });
   }
 
-  sleep(Number(__ENV.SLEEP_SECONDS || '1'));
+  sleep(SLEEP_SECONDS);
 }
 
 function login(email, password = '123456') {
@@ -448,11 +456,10 @@ function timedRequest(method, path, body, params = {}) {
     name: method + ' ' + path,
   });
 
-  const started = Date.now();
   const response = method === 'GET'
     ? http.get(url, requestParams)
     : http.request(method, url, body, requestParams);
-  requestDuration.add(Date.now() - started);
+  requestDuration.add(response.timings.duration);
   completedApiCalls.add(1);
 
   const passed = check(response, {
