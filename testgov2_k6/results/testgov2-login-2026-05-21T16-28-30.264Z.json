@@ -1,0 +1,155 @@
+{
+  "metrics": {
+    "http_reqs": {
+      "values": {
+        "count": 3258,
+        "rate": 31.44423425858009
+      }
+    },
+    "login_failures": {
+      "values": {
+        "rate": 0.003069367710251688,
+        "passes": 10,
+        "fails": 3248
+      }
+    },
+    "http_req_failed": {
+      "values": {
+        "rate": 0.003069367710251688,
+        "passes": 10,
+        "fails": 3248
+      }
+    },
+    "http_req_duration": {
+      "values": {
+        "min": 464,
+        "avg": 1584.7016574585634,
+        "med": 1393,
+        "max": 10003,
+        "p(90)": 1985,
+        "p(95)": 2289,
+        "p(99)": 9717
+      }
+    },
+    "testgov2_request_duration": {
+      "values": {
+        "min": 464,
+        "avg": 1584.7016574585634,
+        "med": 1393,
+        "max": 10003,
+        "p(90)": 1985,
+        "p(95)": 2289,
+        "p(99)": 9717
+      }
+    },
+    "http_req_waiting": {
+      "values": {
+        "min": 464,
+        "avg": 1584.7016574585634,
+        "med": 1393,
+        "max": 10003,
+        "p(90)": 1985,
+        "p(95)": 2289,
+        "p(99)": 9717
+      }
+    },
+    "http_req_connecting": {
+      "values": {
+        "min": 0,
+        "avg": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0
+      }
+    },
+    "http_req_tls_handshaking": {
+      "values": {
+        "min": 0,
+        "avg": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0
+      }
+    },
+    "http_req_duration{name:POST /api/user/login}": {
+      "values": {
+        "min": 464,
+        "avg": 1584.7016574585634,
+        "med": 1393,
+        "max": 10003,
+        "p(90)": 1985,
+        "p(95)": 2289,
+        "p(99)": 9717
+      }
+    },
+    "http_reqs{name:POST /api/user/login}": {
+      "values": {
+        "count": 3258,
+        "rate": 31.44423425858009
+      }
+    },
+    "http_req_failed{name:POST /api/user/login}": {
+      "values": {
+        "rate": 0.003069367710251688,
+        "passes": 10,
+        "fails": 3248
+      }
+    }
+  },
+  "metadata": {
+    "apiBaseUrl": "https://apiv4-gov2.cls.vn",
+    "webBaseUrl": "https://testgov2.cls.vn",
+    "executor": "Excel Bulk Login",
+    "vus": 50,
+    "timestamp": "2026-05-21T16:26:46.617Z"
+  },
+  "state": {
+    "testRunDurationMs": 103612
+  },
+  "failedAccounts": [
+    {
+      "user": "108924",
+      "error": "ServerError"
+    },
+    {
+      "user": "101036",
+      "error": "ServerError"
+    },
+    {
+      "user": "102063",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "101602",
+      "error": "ServerError"
+    },
+    {
+      "user": "103195",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "108152",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "100213",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "109306",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "101504",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "user": "104693",
+      "error": "The operation was aborted due to timeout"
+    }
+  ]
+}

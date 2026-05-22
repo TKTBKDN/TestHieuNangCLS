@@ -1,0 +1,113 @@
+{
+  "metrics": {
+    "http_reqs": {
+      "values": {
+        "count": 1008,
+        "rate": 11.51039704018362
+      }
+    },
+    "login_failures": {
+      "values": {
+        "rate": 0.6944444444444444,
+        "passes": 700,
+        "fails": 308
+      }
+    },
+    "http_req_failed": {
+      "values": {
+        "rate": 0.6944444444444444,
+        "passes": 700,
+        "fails": 308
+      }
+    },
+    "http_req_duration": {
+      "values": {
+        "min": 441,
+        "avg": 8238.921626984127,
+        "med": 10001,
+        "max": 10052,
+        "p(90)": 10013,
+        "p(95)": 10021,
+        "p(99)": 10042
+      }
+    },
+    "testgov2_request_duration": {
+      "values": {
+        "min": 441,
+        "avg": 8238.921626984127,
+        "med": 10001,
+        "max": 10052,
+        "p(90)": 10013,
+        "p(95)": 10021,
+        "p(99)": 10042
+      }
+    },
+    "http_req_waiting": {
+      "values": {
+        "min": 441,
+        "avg": 8238.921626984127,
+        "med": 10001,
+        "max": 10052,
+        "p(90)": 10013,
+        "p(95)": 10021,
+        "p(99)": 10042
+      }
+    },
+    "http_req_connecting": {
+      "values": {
+        "min": 0,
+        "avg": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0
+      }
+    },
+    "http_req_tls_handshaking": {
+      "values": {
+        "min": 0,
+        "avg": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0,
+        "p(99)": 0
+      }
+    },
+    "http_req_duration{name:POST /api/user/login}": {
+      "values": {
+        "min": 441,
+        "avg": 8238.921626984127,
+        "med": 10001,
+        "max": 10052,
+        "p(90)": 10013,
+        "p(95)": 10021,
+        "p(99)": 10042
+      }
+    },
+    "http_reqs{name:POST /api/user/login}": {
+      "values": {
+        "count": 1008,
+        "rate": 11.51039704018362
+      }
+    },
+    "http_req_failed{name:POST /api/user/login}": {
+      "values": {
+        "rate": 0.6944444444444444,
+        "passes": 700,
+        "fails": 308
+      }
+    }
+  },
+  "metadata": {
+    "apiBaseUrl": "https://apiv4-gov2.cls.vn",
+    "webBaseUrl": "https://testgov2.cls.vn",
+    "executor": "Excel Bulk Login",
+    "vus": 100,
+    "timestamp": "2026-05-21T16:17:01.415Z"
+  },
+  "state": {
+    "testRunDurationMs": 87573
+  }
+}

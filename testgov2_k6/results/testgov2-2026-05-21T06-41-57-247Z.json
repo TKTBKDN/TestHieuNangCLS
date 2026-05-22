@@ -1,0 +1,2063 @@
+{
+  "options": {
+    "noColor": false,
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": ""
+  },
+  "state": {
+    "isStdOutTTY": false,
+    "isStdErrTTY": false,
+    "testRunDurationMs": 7298.2048
+  },
+  "metrics": {
+    "http_reqs{name:GET /api/ExperienceUser/get-roll-call}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/course/get-course-evaluation-criteria}": {
+      "contains": "time",
+      "values": {
+        "avg": 58.529775,
+        "min": 37.2434,
+        "med": 61.9344,
+        "max": 73.0069,
+        "p(90)": 71.14408,
+        "p(95)": 72.07549
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "http_req_duration{name:GET /api/CourseUser/my-courses}": {
+      "contains": "time",
+      "values": {
+        "p(95)": 266.40027999999995,
+        "avg": 177.206525,
+        "min": 124.1025,
+        "med": 149.30015,
+        "max": 286.1233,
+        "p(90)": 246.67726
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "group_duration": {
+      "contains": "time",
+      "values": {
+        "max": 1732.3693,
+        "p(90)": 1372.86245,
+        "p(95)": 1625.846575,
+        "avg": 633.8998687499999,
+        "min": 37.4041,
+        "med": 536.0589
+      },
+      "type": "trend"
+    },
+    "http_req_duration{name:GET /api/course/get-document}": {
+      "contains": "time",
+      "values": {
+        "med": 109.1971,
+        "max": 183.8355,
+        "p(90)": 165.35172,
+        "p(95)": 174.59360999999998,
+        "avg": 118.48214999999999,
+        "min": 71.6989
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "http_req_duration{name:GET /api/VersionReleases/get-paging}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 38.553425000000004,
+        "min": 34.4224,
+        "med": 38.9896,
+        "max": 41.8121,
+        "p(90)": 41.29457,
+        "p(95)": 41.553335000000004
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/proficiency/get-by-course-id}": {
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      }
+    },
+    "http_reqs{name:GET /api/course/get-document}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "testgov2_request_duration": {
+      "thresholds": {
+        "p(95)<5000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "default",
+      "values": {
+        "avg": 87.38793103448276,
+        "min": 34,
+        "med": 59,
+        "max": 515,
+        "p(90)": 163.5,
+        "p(95)": 192
+      }
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 192.00705,
+        "avg": 85.64857758620695,
+        "min": 34.4224,
+        "med": 58.482699999999994,
+        "max": 514.4263,
+        "p(90)": 163.10784999999998
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 116,
+        "rate": 15.894319655156842
+      }
+    },
+    "vus_max": {
+      "contains": "default",
+      "values": {
+        "value": 2,
+        "min": 2,
+        "max": 2
+      },
+      "type": "gauge"
+    },
+    "http_req_failed{name:GET /api/course/get-detail}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 4,
+        "rate": 0,
+        "passes": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:POST /api/user/login}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 367.7471,
+        "p(90)": 366.81869,
+        "p(95)": 367.282895,
+        "avg": 268.626125,
+        "min": 165.6277,
+        "med": 270.56485
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "testgov2_api_calls": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 116,
+        "rate": 15.894319655156842
+      }
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 0,
+        "med": 0,
+        "max": 0.9791,
+        "p(90)": 0.20279999999999998,
+        "p(95)": 0.63885,
+        "avg": 0.06538879310344826
+      }
+    },
+    "http_reqs{name:GET /api/Learner/list-my-course}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/VersionReleases/get-paging}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/user/get-detail-user}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:POST /api/learner/set-complete-course-content-basic}": {
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 1,
+        "max": 2
+      }
+    },
+    "http_reqs{name:GET /api/user/get-detail-user}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/Course/get-list-course-by-ids}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/user/basic}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 35.9212,
+        "med": 46.062,
+        "max": 51.0858,
+        "p(90)": 50.32182,
+        "p(95)": 50.70381,
+        "avg": 44.78275
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/Topic/get-information-topic}": {
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_duration{name:POST /api/learner/set-complete-course-content-basic}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 51.4344,
+        "max": 53.8388,
+        "p(90)": 53.36081,
+        "p(95)": 53.599804999999996,
+        "avg": 50.687099999999994,
+        "min": 46.0408
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/User/get-list-contact}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/VersionReleases/get-paging}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:POST /api/learner/update-course-content-user}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 2,
+        "fails": 2,
+        "rate": 0.5
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/certification/get-certification-user}": {
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      }
+    },
+    "http_req_failed{name:GET /api/ExperienceUser/get-roll-call}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 0,
+        "fails": 4,
+        "rate": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/course/learner/get-paging}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 194.880315,
+        "avg": 138.93105,
+        "min": 96.6631,
+        "med": 129.06459999999998,
+        "max": 200.9319,
+        "p(90)": 188.82873
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/user/get-info-user-by-ids}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/user/get-info-user-by-ids}": {
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      }
+    },
+    "http_req_failed{name:GET /api/course/get-general-evaluation}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/course/get-paging-user-evaluation}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 146.4053,
+        "p(90)": 133.73219,
+        "p(95)": 140.06874499999998,
+        "avg": 100.365275,
+        "min": 62.8715,
+        "med": 96.09215
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_waiting": {
+      "values": {
+        "max": 513.763,
+        "p(90)": 163.10784999999998,
+        "p(95)": 191.95147500000002,
+        "avg": 85.5659560344828,
+        "min": 34.2184,
+        "med": 58.482699999999994
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "login_failures": {
+      "values": {
+        "passes": 0,
+        "fails": 4,
+        "rate": 0
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_duration{name:GET /api/User/get-list-contact}": {
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 102.90382500000001,
+        "min": 58.6309,
+        "med": 76.14099999999999,
+        "max": 200.7024,
+        "p(90)": 163.84044000000003,
+        "p(95)": 182.27141999999998
+      }
+    },
+    "http_reqs{name:GET /api/learner/check-course-require}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 0.5480799881088566,
+        "count": 4
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/coursecontent/list-user-content-by-courseId}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/learner/get-course-proficiency-require}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/Course/get-list-course-by-ids}": {
+      "values": {
+        "min": 41.3462,
+        "med": 45.80215,
+        "max": 48.1003,
+        "p(90)": 47.74252,
+        "p(95)": 47.921409999999995,
+        "avg": 45.2627
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{name:GET /api/course/get-general-evaluation}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 46.11817,
+        "avg": 43.885175000000004,
+        "min": 42.2667,
+        "med": 43.37375,
+        "max": 46.5265,
+        "p(90)": 45.70984
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/course/get-detail}": {
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 465.6286449999998,
+        "avg": 232.148775,
+        "min": 104.5662,
+        "med": 154.8013,
+        "max": 514.4263,
+        "p(90)": 416.83099000000004
+      }
+    },
+    "http_reqs{name:GET /api/learner/get-course-content-detail}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 0.5480799881088566,
+        "count": 4
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:POST /api/user/login}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 86.33261666666672,
+        "min": 34.4224,
+        "med": 60.7512,
+        "max": 514.4263,
+        "p(90)": 164.11579,
+        "p(95)": 193.16642999999993
+      }
+    },
+    "http_req_duration{name:GET /api/learner/get-course-content-detail}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 98.13941,
+        "p(95)": 100.73175499999999,
+        "avg": 69.85887500000001,
+        "min": 43.5848,
+        "med": 66.2633,
+        "max": 103.3241
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/coursecontent/list-user-content-by-courseId}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 39.3719,
+        "med": 43.25755,
+        "max": 89.7298,
+        "p(90)": 76.66108,
+        "p(95)": 83.19543999999999,
+        "avg": 53.90419999999999
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_connecting": {
+      "values": {
+        "med": 0,
+        "max": 23.0299,
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0.3868129310344828,
+        "min": 0
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_failed{name:GET /api/topic/get-by-id}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/course/get-general-evaluation}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/CourseUser/my-courses}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/course/get-detail}": {
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "http_req_duration{name:POST /api/learner/update-course-content-user}": {
+      "values": {
+        "p(90)": 138.06436000000002,
+        "p(95)": 155.14932999999996,
+        "avg": 80.971375,
+        "min": 40.9315,
+        "med": 55.359849999999994,
+        "max": 172.2343
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_reqs{name:GET /api/coursecontent/list-user-content-by-courseId}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 0.5480799881088566,
+        "count": 4
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/course/get-paging-user-evaluation}": {
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 4,
+        "rate": 0,
+        "passes": 0
+      }
+    },
+    "http_reqs{name:POST /api/User/login-log}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/course/learner/get-paging}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.9916666666666667,
+        "passes": 238,
+        "fails": 2
+      }
+    },
+    "http_reqs{name:GET /api/course/learner/get-paging}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/certification/get-certification-user}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/proficiency/get-by-course-id}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 0,
+        "fails": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:POST /api/User/login-log}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/Learner/list-my-course}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 54.443435,
+        "avg": 50.224225,
+        "min": 45.6264,
+        "med": 50.042649999999995,
+        "max": 55.1852,
+        "p(90)": 53.70167
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/course/get-document}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 4,
+        "rate": 0,
+        "passes": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/user/basic}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/course/check-user-exist}": {
+      "values": {
+        "fails": 4,
+        "rate": 0,
+        "passes": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_duration{name:GET /api/menu/get-menu-by-role}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 78.927325,
+        "min": 65.9533,
+        "med": 71.58005,
+        "max": 106.5959,
+        "p(90)": 97.25783000000001,
+        "p(95)": 101.92686499999999
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.017232758620689653,
+        "min": 0,
+        "med": 0,
+        "max": 0.5332,
+        "p(90)": 0,
+        "p(95)": 0.02765
+      }
+    },
+    "http_req_failed{name:GET /api/Learner/list-my-course}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/certification/get-certification-user}": {
+      "values": {
+        "avg": 101.456875,
+        "min": 68.1087,
+        "med": 84.74449999999999,
+        "max": 168.2298,
+        "p(90)": 145.67406000000003,
+        "p(95)": 156.95192999999998
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_reqs{name:GET /api/course/get-paging-user-evaluation}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 2889.7968,
+        "med": 3466.41265,
+        "max": 4321.7496,
+        "p(90)": 4212.45336,
+        "p(95)": 4267.10148,
+        "avg": 3536.092925
+      }
+    },
+    "http_req_duration{name:POST /api/User/login-log}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 53.12505,
+        "max": 64.9236,
+        "p(90)": 62.92725,
+        "p(95)": 63.92542499999999,
+        "avg": 53.6984,
+        "min": 43.6199
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:POST /api/learner/set-complete-course-content-basic}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:POST /api/user/login}": {
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter"
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 2,
+        "fails": 114,
+        "rate": 0.017241379310344827
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/Course/get-list-course-by-ids}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_blocked": {
+      "contains": "time",
+      "values": {
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 1.730975,
+        "min": 0,
+        "med": 0,
+        "max": 101.9439
+      },
+      "type": "trend"
+    },
+    "iterations": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      }
+    },
+    "api_failures": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.017241379310344827,
+        "passes": 2,
+        "fails": 114
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/Topic/get-information-topic}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 83.22969,
+        "p(95)": 84.263745,
+        "avg": 68.575875,
+        "min": 55.2455,
+        "med": 66.8801,
+        "max": 85.2978
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 0,
+        "avg": 1.179943103448276,
+        "min": 0,
+        "med": 0,
+        "max": 70.5788,
+        "p(90)": 0
+      }
+    },
+    "http_req_duration{name:GET /api/user/get-info-user-by-ids}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 63.9768,
+        "max": 97.3727,
+        "p(90)": 93.52777999999999,
+        "p(95)": 95.45024,
+        "avg": 67.08005,
+        "min": 42.9939
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/learner/check-course-require}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 69.04554,
+        "p(95)": 73.56146999999999,
+        "avg": 50.782125,
+        "min": 35.3371,
+        "med": 44.857,
+        "max": 78.0774
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/learner/get-course-proficiency-require}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "passes": 0,
+        "fails": 4,
+        "rate": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/topic/get-by-id}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 62.357749999999996,
+        "min": 51.4956,
+        "med": 61.99145,
+        "max": 73.9525,
+        "p(90)": 73.43347,
+        "p(95)": 73.692985
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/Notification/count-noti-unseen}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/learner/get-course-proficiency-require}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 47.876174999999996,
+        "min": 35.5236,
+        "med": 42.187650000000005,
+        "max": 71.6058,
+        "p(90)": 63.75930000000001,
+        "p(95)": 67.68254999999999
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/menu/get-menu-by-role}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/User/get-list-contact}": {
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_failed{name:GET /api/Notification/count-noti-unseen}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 4,
+        "rate": 0,
+        "passes": 0
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/ExperienceUser/get-roll-call}": {
+      "values": {
+        "avg": 51.83625,
+        "min": 37.4041,
+        "med": 46.261700000000005,
+        "max": 77.4175,
+        "p(90)": 69.09637000000001,
+        "p(95)": 73.256935
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_reqs{name:GET /api/menu/get-menu-by-role}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:POST /api/learner/update-course-content-user}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 0.5480799881088566,
+        "count": 4
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/topic/get-by-id}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/user/get-detail-user}": {
+      "contains": "time",
+      "values": {
+        "p(90)": 70.55232000000001,
+        "p(95)": 74.93075999999999,
+        "avg": 54.232325,
+        "min": 43.2164,
+        "med": 47.20185,
+        "max": 79.3092
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "http_req_duration{name:GET /api/course/check-user-exist}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 54.142500000000005,
+        "min": 43.3949,
+        "med": 53.80395,
+        "max": 65.5672,
+        "p(90)": 62.043820000000004,
+        "p(95)": 63.80551
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/course/get-course-evaluation-criteria}": {
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_failed{name:GET /api/learner/get-course-content-detail}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "data_sent": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 23748,
+        "rate": 3253.9508894022815
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 89052,
+        "rate": 12201.904775267474
+      }
+    },
+    "http_req_failed{name:GET /api/Topic/get-information-topic}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/CourseUser/my-courses}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{name:GET /api/Notification/count-noti-unseen}": {
+      "values": {
+        "avg": 117.519775,
+        "min": 103.5048,
+        "med": 113.37379999999999,
+        "max": 139.8267,
+        "p(90)": 133.6422,
+        "p(95)": 136.73444999999998
+      },
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_reqs{name:GET /api/course/check-user-exist}": {
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      }
+    },
+    "http_req_duration{name:GET /api/proficiency/get-by-course-id}": {
+      "thresholds": {
+        "p(95)<600000": {
+          "ok": true
+        }
+      },
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 0,
+        "avg": 0,
+        "min": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0
+      }
+    },
+    "http_reqs{name:GET /api/user/basic}": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed{name:GET /api/learner/check-course-require}": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 4
+      },
+      "thresholds": {
+        "rate<=1.0": {
+          "ok": true
+        }
+      }
+    },
+    "http_reqs{name:GET /api/course/get-course-evaluation-criteria}": {
+      "values": {
+        "count": 4,
+        "rate": 0.5480799881088566
+      },
+      "thresholds": {
+        "count>=0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default"
+    }
+  },
+  "metadata": {
+    "webBaseUrl": "https://testgov2.cls.vn",
+    "topicId": "6",
+    "userStart": 100001,
+    "userEnd": 102000,
+    "executor": "shared-iterations",
+    "timestamp": "2026-05-21T06:41:57.247Z",
+    "apiBaseUrl": "https://apiv4-gov2.cls.vn",
+    "courseId": "163",
+    "courseContentId": "3916",
+    "roleId": "4",
+    "sleepSeconds": 1,
+    "vus": 2,
+    "iterations": 4,
+    "duration": null
+  },
+  "root_group": {
+    "groups": [
+      {
+        "groups": [],
+        "checks": [
+            {
+              "path": "::01 Dangnhap::POST /api/user/login: status is 2xx/3xx",
+              "id": "600cac57619eea3ef5551da54b87b67a",
+              "passes": 4,
+              "fails": 0,
+              "name": "POST /api/user/login: status is 2xx/3xx"
+            },
+            {
+              "fails": 0,
+              "name": "POST /api/user/login: not unauthorized",
+              "path": "::01 Dangnhap::POST /api/user/login: not unauthorized",
+              "id": "148468357e9d7f9a88645928019d9fcc",
+              "passes": 4
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "Dangnhap: HTTP 200",
+              "path": "::01 Dangnhap::Dangnhap: HTTP 200",
+              "id": "1af495f0a91fe3238df9c5b693b92284"
+            },
+            {
+              "name": "Dangnhap: has access token",
+              "path": "::01 Dangnhap::Dangnhap: has access token",
+              "id": "72809a019ae5cc457763d9987131b4c9",
+              "passes": 4,
+              "fails": 0
+            }
+          ],
+        "name": "01 Dangnhap",
+        "path": "::01 Dangnhap",
+        "id": "27cb8b8956f90427292cd0939d5e82d2"
+      },
+      {
+        "checks": [
+          {
+            "name": "GET /api/ExperienceUser/get-roll-call: status is 2xx/3xx",
+            "path": "::02 ThongtinKhoahoc::GET /api/ExperienceUser/get-roll-call: status is 2xx/3xx",
+            "id": "ce1a82929ea91bb32ebefedee3daf7c9",
+            "passes": 4,
+            "fails": 0
+          },
+          {
+            "name": "GET /api/ExperienceUser/get-roll-call: not unauthorized",
+            "path": "::02 ThongtinKhoahoc::GET /api/ExperienceUser/get-roll-call: not unauthorized",
+            "id": "b49dac5761e69a5ac4a2a8f799e24784",
+            "passes": 4,
+            "fails": 0
+          }
+        ],
+        "name": "02 ThongtinKhoahoc",
+        "path": "::02 ThongtinKhoahoc",
+        "id": "03883ec90b9eba3ea8685e06f1edf59c",
+        "groups": []
+      },
+      {
+        "name": "03 Browser recording - home and course overview",
+        "path": "::03 Browser recording - home and course overview",
+        "id": "9a602f1a0785e0ce80b923145a2328cb",
+        "groups": [],
+        "checks": [
+            {
+              "name": "GET /api/course/get-detail: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: status is 2xx/3xx",
+              "id": "5a690c60e9b0da96fed9ce98c31856ef",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/get-detail: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: not unauthorized",
+              "id": "64f55269247bbe606bd2c5041f65f330"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/user/get-detail-user: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/user/get-detail-user: status is 2xx/3xx",
+              "id": "1f219c2882706fc2a66de6809b319b38"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/user/get-detail-user: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/user/get-detail-user: not unauthorized",
+              "id": "bb23abfc54777a8f47de9ac4cad57ff8"
+            },
+            {
+              "name": "GET /api/course/get-course-evaluation-criteria: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-course-evaluation-criteria: status is 2xx/3xx",
+              "id": "92f660105c022028250435d453c9bf75",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/get-course-evaluation-criteria: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-course-evaluation-criteria: not unauthorized",
+              "id": "4e4b5fd49005817e48fa3da986efa7c0",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "id": "37689626b87de93b6c4a72b4457f5858",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/get-general-evaluation: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-general-evaluation: status is 2xx/3xx"
+            },
+            {
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-general-evaluation: not unauthorized",
+              "id": "1b0ee8b27f31d256f16683ab1b4dc4ca",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/get-general-evaluation: not unauthorized"
+            },
+            {
+              "name": "GET /api/course/get-paging-user-evaluation: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-paging-user-evaluation: status is 2xx/3xx",
+              "id": "35fa7526d55ef590f2372a83fd7980f4",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/get-paging-user-evaluation: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-paging-user-evaluation: not unauthorized",
+              "id": "05f6b7cc584abf77e1cb9d59ba96b2b2",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "path": "::03 Browser recording - home and course overview::GET /api/course/check-user-exist: status is 2xx/3xx",
+              "id": "989b649c2786d74c754414f6704bb16f",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/check-user-exist: status is 2xx/3xx"
+            },
+            {
+              "id": "b0c5e6594baf2d5653f22072e66202b1",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/check-user-exist: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/check-user-exist: not unauthorized"
+            },
+            {
+              "name": "GET /api/coursecontent/list-user-content-by-courseId: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/coursecontent/list-user-content-by-courseId: status is 2xx/3xx",
+              "id": "aaf9f0af4f1ef690511eeb01bac66ec5",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/coursecontent/list-user-content-by-courseId: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/coursecontent/list-user-content-by-courseId: not unauthorized",
+              "id": "0b223a4f992bcbe570f51e8451339300",
+              "passes": 4
+            },
+            {
+              "name": "GET /api/topic/get-by-id: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/topic/get-by-id: status is 2xx/3xx",
+              "id": "6ccf7aa835a0026234e6cb018120d6f3",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/topic/get-by-id: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/topic/get-by-id: not unauthorized",
+              "id": "bb854060d72f6bf8da87e542d2088f62",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/course/get-document: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-document: status is 2xx/3xx",
+              "id": "7c23e6e155be7cc419d7ee278bba8a15",
+              "passes": 4
+            },
+            {
+              "name": "GET /api/course/get-document: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-document: not unauthorized",
+              "id": "84d01be47cde273e91c9a2eeed2e8667",
+              "passes": 4,
+              "fails": 0
+            }
+          ]
+      },
+      {
+        "groups": [],
+        "checks": [
+            {
+              "name": "GET /api/user/basic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/basic: status is 2xx/3xx",
+              "id": "0d14b38be06d99691b16c14c295cae65",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/user/basic: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/basic: not unauthorized",
+              "id": "d060490e3baa539dcfdb323741b7418e"
+            },
+            {
+              "name": "GET /api/User/get-list-contact: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/User/get-list-contact: status is 2xx/3xx",
+              "id": "f9b283f635387dc350ccd4bd73b9e5d8",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/User/get-list-contact: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/User/get-list-contact: not unauthorized",
+              "id": "1a9c762580f1af47324e6cb127151853",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/VersionReleases/get-paging: status is 2xx/3xx",
+              "id": "8909954eb600b7a48b2beb2ad7b440ff",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/VersionReleases/get-paging: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/VersionReleases/get-paging: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/VersionReleases/get-paging: not unauthorized",
+              "id": "e7505758888808e08a063c9148d7c2d8",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "POST /api/User/login-log: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/User/login-log: status is 2xx/3xx",
+              "id": "4b2e1186527602de6fd355c0b3ab1e81",
+              "passes": 4
+            },
+            {
+              "name": "POST /api/User/login-log: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::POST /api/User/login-log: not unauthorized",
+              "id": "c2c7016cfa91aabe90ff0fd7243bc021",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/menu/get-menu-by-role: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/menu/get-menu-by-role: status is 2xx/3xx",
+              "id": "77b8cb72585e3d509fcda3c33468090a",
+              "passes": 4
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/menu/get-menu-by-role: not unauthorized",
+              "id": "65a9e988828e7ea07926b3d77d8a97a5",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/menu/get-menu-by-role: not unauthorized"
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/CourseUser/my-courses: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/CourseUser/my-courses: status is 2xx/3xx",
+              "id": "a4954e8fface6e7de9eed65cdff07d48",
+              "passes": 4
+            },
+            {
+              "name": "GET /api/CourseUser/my-courses: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/CourseUser/my-courses: not unauthorized",
+              "id": "913cac64f0d44eac1d56984bed460a84",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/Notification/count-noti-unseen: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Notification/count-noti-unseen: status is 2xx/3xx",
+              "id": "b2f2d8638a5708e32734901253883fa8"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/Notification/count-noti-unseen: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Notification/count-noti-unseen: not unauthorized",
+              "id": "66df0c87abd32fc8130c8d876b94dff7"
+            },
+            {
+              "name": "GET /api/Topic/get-information-topic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Topic/get-information-topic: status is 2xx/3xx",
+              "id": "5de0322c74531a3c56fa244877dfda59",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/Topic/get-information-topic: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Topic/get-information-topic: not unauthorized",
+              "id": "083d56abab90a8f272070ea74d784285",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/learner/get-paging: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/course/learner/get-paging: status is 2xx/3xx",
+              "id": "81af4d561d220ca04b40c7b522a999e9",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/course/learner/get-paging: not unauthorized",
+              "id": "3bcc77419f2a6cfea08146a9865f2a01",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/course/learner/get-paging: not unauthorized"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/learner/check-course-require: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/check-course-require: status is 2xx/3xx",
+              "id": "298af8fdaa21e05c9084e4284547814e"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/learner/check-course-require: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/check-course-require: not unauthorized",
+              "id": "c67e7694c282fb9cb84fd7d0d74609f0"
+            },
+            {
+              "name": "GET /api/learner/get-course-proficiency-require: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-proficiency-require: status is 2xx/3xx",
+              "id": "53153cf86b3b7d7359051b47e470dfa1",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/learner/get-course-proficiency-require: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-proficiency-require: not unauthorized",
+              "id": "5557913668df1261511f1abf53a1a915"
+            },
+            {
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/Learner/list-my-course: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Learner/list-my-course: status is 2xx/3xx",
+              "id": "c1db9582793cf11b45a56cd2ae26a83f"
+            },
+            {
+              "name": "GET /api/Learner/list-my-course: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Learner/list-my-course: not unauthorized",
+              "id": "017fd6e3e6ae4e10c2c0a9e516e4f6f9",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/user/get-info-user-by-ids: status is 2xx/3xx",
+              "id": "afdadc2cad1ef764694688f2f8590e45",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/user/get-info-user-by-ids: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/user/get-info-user-by-ids: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/get-info-user-by-ids: not unauthorized",
+              "id": "a48587eb3832e47bafc9558573e72e1c",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/learner/get-course-content-detail: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-content-detail: status is 2xx/3xx",
+              "id": "299f1a61da9a52b712aa94edcb8f77ea",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/learner/get-course-content-detail: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-content-detail: not unauthorized",
+              "id": "b1e7b474c81662c8d8aa847a1ea7d2ee",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "id": "7d11e73c2ad27f7093967eec371548ca",
+              "passes": 4,
+              "fails": 0,
+              "name": "POST /api/learner/set-complete-course-content-basic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/set-complete-course-content-basic: status is 2xx/3xx"
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/set-complete-course-content-basic: not unauthorized",
+              "id": "60c558200a8000c992645773683f05fc",
+              "passes": 4,
+              "fails": 0,
+              "name": "POST /api/learner/set-complete-course-content-basic: not unauthorized"
+            },
+            {
+              "name": "GET /api/Course/get-list-course-by-ids: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Course/get-list-course-by-ids: status is 2xx/3xx",
+              "id": "def4aab1ec719f6705c851aa0df9044c",
+              "passes": 4,
+              "fails": 0
+            },
+            {
+              "id": "87f8f89e0d33534504f45d22c7d8818f",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/Course/get-list-course-by-ids: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Course/get-list-course-by-ids: not unauthorized"
+            },
+            {
+              "id": "a3f023981d407e4b40780998afca5fe5",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/certification/get-certification-user: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/certification/get-certification-user: status is 2xx/3xx"
+            },
+            {
+              "id": "2f02c3f86a2b325d142aec59e113752f",
+              "passes": 4,
+              "fails": 0,
+              "name": "GET /api/certification/get-certification-user: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/certification/get-certification-user: not unauthorized"
+            },
+            {
+              "name": "POST /api/learner/update-course-content-user: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/update-course-content-user: status is 2xx/3xx",
+              "id": "ceaf8059cc666a34ce85d72645e4fcbb",
+              "passes": 2,
+              "fails": 2
+            },
+            {
+              "name": "POST /api/learner/update-course-content-user: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/update-course-content-user: not unauthorized",
+              "id": "bbd0d85948d83c7621ed6b60ea3e44b8",
+              "passes": 4,
+              "fails": 0
+            }
+          ],
+        "name": "04 Browser recording - course learning detail",
+        "path": "::04 Browser recording - course learning detail",
+        "id": "d1d2217c74cb3c186233b38c38e9ba3b"
+      }
+    ],
+    "checks": [],
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e"
+  }
+}

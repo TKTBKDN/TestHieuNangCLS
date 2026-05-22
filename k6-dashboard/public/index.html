@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="k6 Performance Test Dashboard — Chạy và theo dõi test hiệu năng">
+  <title>k6 Test Hiệu năng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="app">
+    <!-- ====== SIDEBAR ====== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">⚡</div>
+          <div>
+            <h1>k6 Runner</h1>
+            <p class="subtitle">Bảng điều khiển Test Hiệu năng</p>
+          </div>
+        </div>
+      </div>
+
+      <form id="configForm" class="config-form">
+        <div class="form-section">
+          <label class="section-label">Chế độ chạy</label>
+          <div class="toggle-group" id="executorToggle">
+            <button type="button" class="toggle active" data-value="shared-iterations">Chia sẻ lượt</button>
+            <button type="button" class="toggle" data-value="constant-vus">VU cố định</button>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">Cấu hình tải</label>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="vus">Số người dùng (VU)</label>
+              <input type="number" id="vus" value="5" min="1" max="1000">
+            </div>
+            <div class="form-group" id="iterationsGroup">
+              <label for="iterations">Số lượt chạy</label>
+              <input type="number" id="iterations" value="50" min="1">
+            </div>
+            <div class="form-group hidden" id="durationGroup">
+              <label for="duration">Thời lượng</label>
+              <input type="text" id="duration" value="1m" placeholder="VD: 1m, 30s">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">Mục tiêu</label>
+          <div class="form-group">
+            <label for="apiBaseUrl">API Base URL</label>
+            <input type="url" id="apiBaseUrl" value="https://apiv4-gov2.cls.vn">
+          </div>
+          <div class="form-group">
+            <label for="webBaseUrl">Web Base URL</label>
+            <input type="url" id="webBaseUrl" value="https://testgov2.cls.vn">
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="section-label">Danh sách Excel (Học viên)</label>
+          <div class="form-group">
+            <label class="file-upload-label" for="excelFile">
+              <span>📁 Chọn file Excel học viên</span>
+              <input type="file" id="excelFile" accept=".xlsx, .xls" style="display: none;">
+            </label>
+            <div id="excelInfo" class="excel-info hidden">
+              <span id="excelFileName">filename.xlsx</span>
+              <span id="excelFileDetails">0 học viên (0 token)</span>
+            </div>
+          </div>
+          <div class="form-group flex-row" style="margin-top: 5px; display: flex; align-items: center;">
+            <input type="checkbox" id="useExcel" style="width: auto; margin-right: 8px; cursor: pointer;">
+            <label for="useExcel" style="margin: 0; cursor: pointer; font-size: 12px; color: var(--text-secondary);">Sử dụng danh sách Excel</label>
+          </div>
+          <div class="form-group flex-row hidden" id="useSavedTokensGroup" style="margin-top: 5px; display: flex; align-items: center;">
+            <input type="checkbox" id="useSavedTokens" style="width: auto; margin-right: 8px; cursor: pointer;">
+            <label for="useSavedTokens" style="margin: 0; cursor: pointer; font-size: 12px; color: var(--text-secondary);">Sử dụng Token đã lưu (Bỏ qua Login)</label>
+          </div>
+          <div class="form-group hidden" id="excelActionsGroup" style="margin-top: 8px;">
+            <button type="button" id="loginExcelBtn" class="btn btn-secondary btn-sm" style="width: 100%; display: block;">
+              🔐 Đăng nhập hàng loạt & Lưu Token
+            </button>
+            <button type="button" id="stopLoginExcelBtn" class="btn btn-stop btn-sm hidden" style="width: 100%; display: block; margin-top: 4px;">
+              ⏹ Dừng đăng nhập
+            </button>
+            <div id="loginExcelProgress" class="login-progress hidden" style="margin-top: 6px;">
+              <div class="progress-bar-sm"><div id="loginExcelProgressBar" style="width: 0%;"></div></div>
+              <span id="loginExcelProgressText">Đang đăng nhập: 0/0</span>
+            </div>
+            <div id="excelLoginErrors" class="hidden" style="margin-top: 10px; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: var(--radius-sm); padding: 10px; background: rgba(239, 68, 68, 0.04);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <span style="font-size: 11px; font-weight: 600; color: var(--danger); display: flex; align-items: center; gap: 4px;">❌ Lỗi đăng nhập (<span id="excelErrorCount">0</span>)</span>
+                <button type="button" id="copyExcelErrorsBtn" style="color: var(--accent); cursor: pointer; border: none; background: none; font-size: 10px; font-weight: 600; padding: 0;">Sao chép</button>
+              </div>
+              <div id="excelErrorsList" style="max-height: 120px; overflow-y: auto; font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); line-height: 1.4; display: flex; flex-direction: column; gap: 4px; padding-right: 4px; text-align: left;">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <button type="button" class="section-toggle" id="advancedToggle">
+            <span class="section-label">Nâng cao</span>
+            <span class="chevron">›</span>
+          </button>
+          <div class="collapsible-content hidden" id="advancedContent">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="courseId">Course ID</label>
+                <input type="text" id="courseId" value="175">
+              </div>
+              <div class="form-group">
+                <label for="courseContentId">Content ID</label>
+                <input type="text" id="courseContentId" value="4117">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="topicId">Topic ID</label>
+                <input type="text" id="topicId" value="6">
+              </div>
+              <div class="form-group">
+                <label for="roleId">Role ID</label>
+                <input type="text" id="roleId" value="4">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="userStart">User bắt đầu</label>
+                <input type="number" id="userStart" value="101430" min="1">
+              </div>
+              <div class="form-group">
+                <label for="userEnd">User kết thúc</label>
+                <input type="number" id="userEnd" value="101990" min="1">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sleepSeconds">Nghỉ (giây)</label>
+              <input type="number" id="sleepSeconds" value="1" min="0" step="0.5">
+            </div>
+            <div class="form-group">
+              <label for="maxDuration">Thời gian tối đa</label>
+              <input type="text" id="maxDuration" value="5m">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <button type="button" class="section-toggle" id="apiToggle">
+            <span class="section-label">Chọn API</span>
+            <span class="api-badge" id="apiBadge"></span>
+            <span class="chevron">›</span>
+          </button>
+          <div class="collapsible-content hidden" id="apiContent"></div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="runBtn" class="btn btn-run">
+            <span class="btn-glyph">▶</span><span>Chạy Test</span>
+          </button>
+          <button type="button" id="stopBtn" class="btn btn-stop hidden">
+            <span class="btn-glyph">■</span><span>Dừng</span>
+          </button>
+        </div>
+      </form>
+    </aside>
+
+    <!-- ====== MAIN ====== -->
+    <main class="main">
+      <!-- Metrics Cards -->
+      <div class="metrics-grid hidden" id="metricsGrid">
+        <div class="metric-card" id="metricRequests">
+          <div class="metric-icon">📊</div>
+          <div class="metric-value" id="metricRequestsValue">—</div>
+          <div class="metric-label">Tổng Request</div>
+        </div>
+        <div class="metric-card" id="metricLoginRate">
+          <div class="metric-icon">🔐</div>
+          <div class="metric-value" id="metricLoginRateValue">—</div>
+          <div class="metric-label">Lỗi Đăng nhập</div>
+        </div>
+        <div class="metric-card" id="metricApiRate">
+          <div class="metric-icon">🌐</div>
+          <div class="metric-value" id="metricApiRateValue">—</div>
+          <div class="metric-label">Lỗi API</div>
+        </div>
+        <div class="metric-card" id="metricP95">
+          <div class="metric-icon">⏱️</div>
+          <div class="metric-value" id="metricP95Value">—</div>
+          <div class="metric-label">Thời gian P95</div>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-container hidden" id="progressContainer">
+        <div class="progress-header">
+          <span class="progress-label" id="progressLabel">Đang chạy…</span>
+          <span class="progress-percent" id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-details" id="progressDetails"></div>
+      </div>
+
+      <!-- Detailed Report -->
+      <div class="report-section hidden" id="reportSection"></div>
+
+      <!-- Console -->
+      <div class="console-container">
+        <div class="console-header">
+          <div class="console-title">
+            <span class="console-dot" id="consoleDot"></span>
+            <h2>Nhật ký chạy test</h2>
+          </div>
+          <div class="console-actions">
+            <button class="btn-icon" id="clearBtn" title="Xóa">🗑️</button>
+            <button class="btn-icon" id="copyBtn" title="Sao chép">📋</button>
+          </div>
+        </div>
+        <div class="console-output" id="consoleOutput">
+          <div class="console-welcome">
+            <div class="welcome-icon">🚀</div>
+            <h3>Sẵn sàng test</h3>
+            <p>Cấu hình tham số và bấm <strong>Chạy Test</strong> để bắt đầu.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- History -->
+      <div class="history-section">
+        <div class="history-header">
+          <h2>📁 Lịch sử Test</h2>
+          <button class="btn-icon" id="refreshHistoryBtn" title="Làm mới">🔄</button>
+        </div>
+        <div class="history-list" id="historyList">
+          <div class="history-empty">Chưa có kết quả test nào.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

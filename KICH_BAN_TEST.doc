@@ -1,0 +1,197 @@
+﻿<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->
+<style>
+  @page { size: A4; margin: 2cm 2.5cm; }
+  body { font-family: 'Times New Roman', serif; font-size: 13pt; color: #1e293b; line-height: 1.6; }
+  h1 { font-size: 18pt; color: #1d4ed8; text-align: center; margin-bottom: 10pt; font-weight: bold; }
+  h2 { font-size: 14pt; color: #1d4ed8; border-bottom: 2pt solid #1d4ed8; padding-bottom: 4pt; margin-top: 18pt; margin-bottom: 8pt; font-weight: bold; }
+  h3 { font-size: 13pt; color: #1e293b; margin-top: 12pt; margin-bottom: 6pt; font-weight: bold; }
+  h4 { font-size: 12pt; color: #475569; margin-top: 8pt; margin-bottom: 4pt; font-weight: bold; }
+  p { margin-bottom: 6pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8pt 0 12pt; }
+  th { background-color: #1d4ed8; color: white; padding: 6pt 8pt; text-align: left; font-size: 11pt; font-weight: bold; border: 1pt solid #1d4ed8; }
+  td { padding: 5pt 8pt; border: 1pt solid #cbd5e1; font-size: 11pt; }
+  tr:nth-child(even) td { background-color: #f8fafc; }
+  .center { text-align: center; }
+  .bold { font-weight: bold; }
+  .blue { color: #1d4ed8; font-weight: bold; }
+  .meta-table { border: none; margin-bottom: 16pt; }
+  .meta-table td { border: none; padding: 2pt 8pt; font-size: 11pt; }
+  .meta-label { font-weight: bold; color: #1e293b; width: 120pt; }
+  .formula-box { background-color: #eef2ff; border: 1pt solid #c7d2fe; padding: 10pt 16pt; text-align: center; font-size: 14pt; font-weight: bold; color: #1d4ed8; margin: 8pt 0; }
+  .info-box { background-color: #eff6ff; border-left: 4pt solid #2563eb; padding: 8pt 12pt; margin: 8pt 0; font-size: 11pt; }
+  .info-box-orange { background-color: #fff7ed; border-left: 4pt solid #f97316; padding: 8pt 12pt; margin: 8pt 0; font-size: 11pt; }
+  .info-box-green { background-color: #ecfdf5; border-left: 4pt solid #10b981; padding: 8pt 12pt; margin: 8pt 0; font-size: 11pt; }
+  .scenario-title { background-color: #dbeafe; color: #1e40af; padding: 6pt 10pt; font-weight: bold; font-size: 12pt; border: 1pt solid #93c5fd; }
+  .scenario-title-stress { background-color: #ffedd5; color: #9a3412; padding: 6pt 10pt; font-weight: bold; font-size: 12pt; border: 1pt solid #fdba74; }
+  .badge { padding: 1pt 6pt; font-size: 9pt; font-weight: bold; }
+  .badge-post { background-color: #dcfce7; color: #166534; }
+  .badge-patch { background-color: #fef3c7; color: #92400e; }
+  .badge-load { background-color: #dbeafe; color: #1e40af; }
+  .badge-stress { background-color: #ffedd5; color: #9a3412; }
+  ul { margin: 4pt 0 8pt 20pt; }
+  li { margin-bottom: 4pt; }
+  .footer { text-align: center; margin-top: 20pt; padding-top: 10pt; border-top: 2pt solid #e2e8f0; color: #94a3b8; font-size: 10pt; }
+</style>
+</head>
+<body>
+
+<h1>📋 KỊCH BẢN KIỂM THỬ HIỆU NĂNG HỆ THỐNG LMS</h1>
+
+<table class="meta-table">
+  <tr><td class="meta-label">Dự án:</td><td>Kiểm thử hiệu năng hệ thống đào tạo trực tuyến (LMS)</td></tr>
+  <tr><td class="meta-label">Mục tiêu:</td><td>Load Test (1.000 / 2.000 / 7.000 CCU) & Stress Test tìm điểm gãy</td></tr>
+  <tr><td class="meta-label">Công cụ:</td><td>Grafana k6</td></tr>
+  <tr><td class="meta-label">Ngày cập nhật:</td><td>22/05/2026</td></tr>
+</table>
+
+<!-- ═══════ 1. MỤC TIÊU ═══════ -->
+<h2>1. MỤC TIÊU KIỂM THỬ (Theo yêu cầu khách hàng)</h2>
+
+<p><strong>1. Load Test (Kiểm thử tải):</strong></p>
+<ul>
+  <li>Đánh giá khả năng đáp ứng và đo lường tài nguyên tiêu hao (CPU/RAM/Network) của hệ thống ở các mốc: <strong>1.000 CCU</strong>, <strong>2.000 CCU</strong> và <strong>7.000 CCU</strong>.</li>
+</ul>
+
+<p><strong>2. Stress Test (Kiểm thử giới hạn):</strong></p>
+<ul>
+  <li>Tăng tải vượt ngưỡng 7.000 CCU để tìm <strong>điểm gãy (Breakdown Point)</strong> — thời điểm hệ thống bắt đầu quá tải, phản hồi cực chậm hoặc sập hoàn toàn (trả lỗi 502/504).</li>
+</ul>
+
+<!-- ═══════ QUY ĐỔI VU ↔ CCU ═══════ -->
+<h2>📐 QUY ĐỔI VU ↔ CCU</h2>
+
+<p><strong>VU (Virtual User)</strong> trong k6 là luồng ảo chạy <strong>liên tục không ngừng</strong>, khác với <strong>CCU (Concurrent User)</strong> là người dùng thật có thời gian đọc, suy nghĩ (~15 giây) giữa các thao tác.</p>
+
+<div class="formula-box">
+  VU = CCU ÷ (Think-time thực tế ÷ Sleep trong k6)<br>
+  <span style="font-size:11pt; font-weight:normal; color:#4338ca;">Với Think-time ≈ 15s, Sleep k6 = 1s → <strong>1 VU ≈ 15 CCU</strong></span>
+</div>
+
+<table>
+  <tr><th class="center">CCU mục tiêu</th><th class="center">VU cấu hình k6 (sleep=1s)</th><th class="center">Giải thích</th></tr>
+  <tr><td class="center">1.000</td><td class="center bold blue">67 VU</td><td class="center">67 × 15 ≈ 1.000 CCU</td></tr>
+  <tr><td class="center">2.000</td><td class="center bold blue">134 VU</td><td class="center">134 × 15 ≈ 2.000 CCU</td></tr>
+  <tr><td class="center">7.000</td><td class="center bold blue">467 VU</td><td class="center">467 × 15 ≈ 7.000 CCU</td></tr>
+</table>
+
+<!-- ═══════ 2. API CHI TIẾT ═══════ -->
+<h2>2. KỊCH BẢN API CHI TIẾT (2 API Nghiệp vụ)</h2>
+
+<p>Kịch bản tập trung kiểm thử 2 API cốt lõi của quy trình thi trắc nghiệm:</p>
+
+<table>
+  <tr>
+    <th class="center" style="width:30pt">STT</th>
+    <th>Nghiệp vụ</th>
+    <th>API Endpoint</th>
+    <th class="center">Phương thức</th>
+    <th>Mô tả tải</th>
+  </tr>
+  <tr>
+    <td class="center bold">1</td>
+    <td><strong>Bắt đầu thi</strong></td>
+    <td><code>/api/examtest/start-exam</code></td>
+    <td class="center"><span class="badge badge-patch">PATCH</span></td>
+    <td>Khởi tạo bài thi trắc nghiệm — API chịu tải cao nhất</td>
+  </tr>
+  <tr>
+    <td class="center bold">2</td>
+    <td><strong>Nộp bài thi</strong></td>
+    <td><code>/api/examtest/set-answer-question</code></td>
+    <td class="center"><span class="badge badge-post">POST</span></td>
+    <td>Nộp đáp án từng câu hỏi — ghi dữ liệu vào Database</td>
+  </tr>
+</table>
+
+<!-- ═══════ 3. CẤU HÌNH KỊCH BẢN ═══════ -->
+<h2>3. CẤU HÌNH CÁC KỊCH BẢN CHẠY TEST</h2>
+
+<p>Để đạt được mục tiêu tính toán tài nguyên và tìm điểm gãy, quá trình test được chia làm các bước độc lập sau:</p>
+
+<!-- 3.1 -->
+<div class="scenario-title">📊 Kịch bản 3.1: Load Test 1.000 CCU (Tính toán tài nguyên mốc 1)</div>
+<table class="meta-table">
+  <tr><td class="meta-label">Số lượng VU:</td><td class="blue">67 VU (67 × 15 ≈ 1.000 CCU)</td></tr>
+  <tr><td class="meta-label">Iterations:</td><td>1.000 lượt (mỗi user thực hiện 1 lượt đầy đủ)</td></tr>
+  <tr><td class="meta-label">Sleep:</td><td>1 giây (mô phỏng think-time người dùng thật)</td></tr>
+  <tr><td class="meta-label">API:</td><td>Bắt đầu thi + Nộp bài thi</td></tr>
+</table>
+<div class="info-box"><strong>Mục tiêu:</strong> Đo CPU/RAM/Băng thông trên máy chủ Web và Database khi phục vụ ổn định 1.000 người cùng lúc.</div>
+
+<!-- 3.2 -->
+<div class="scenario-title">📊 Kịch bản 3.2: Load Test 2.000 CCU (Tính toán tài nguyên mốc 2)</div>
+<table class="meta-table">
+  <tr><td class="meta-label">Số lượng VU:</td><td class="blue">134 VU (134 × 15 ≈ 2.000 CCU)</td></tr>
+  <tr><td class="meta-label">Iterations:</td><td>2.000 lượt</td></tr>
+  <tr><td class="meta-label">Sleep:</td><td>1 giây</td></tr>
+  <tr><td class="meta-label">API:</td><td>Bắt đầu thi + Nộp bài thi</td></tr>
+</table>
+<div class="info-box"><strong>Mục tiêu:</strong> Đánh giá hiệu năng hệ thống khi tải tăng gấp đôi so với mốc 1. Ghi nhận mức tăng CPU/RAM tương ứng.</div>
+
+<!-- 3.3 -->
+<div class="scenario-title">📊 Kịch bản 3.3: Load Test 7.000 CCU (Tải đỉnh — mốc 3)</div>
+<table class="meta-table">
+  <tr><td class="meta-label">Số lượng VU:</td><td class="blue">467 VU (467 × 15 ≈ 7.000 CCU)</td></tr>
+  <tr><td class="meta-label">Iterations:</td><td>7.000 lượt</td></tr>
+  <tr><td class="meta-label">Sleep:</td><td>1 giây</td></tr>
+  <tr><td class="meta-label">API:</td><td>Bắt đầu thi + Nộp bài thi</td></tr>
+</table>
+<div class="info-box"><strong>Mục tiêu:</strong> Đo ngưỡng giới hạn thiết kế hệ thống. Ghi nhận CPU/RAM tối đa để đề xuất cấu hình máy chủ cho khách hàng.</div>
+
+<!-- 3.4 -->
+<div class="scenario-title-stress">💥 Kịch bản 3.4: Stress Test tìm điểm gãy (Vượt tải đỉnh)</div>
+<p>Tăng dần tải từ 467 VU (7.000 CCU), mỗi bước tương đương +1.000 CCU, duy trì 5 phút/bước:</p>
+
+<table>
+  <tr><th class="center">Bước</th><th class="center">VU</th><th class="center">≈ CCU</th><th class="center">Duy trì</th><th>Mục tiêu</th></tr>
+  <tr><td class="center">1</td><td class="center bold">467</td><td class="center">7.000</td><td class="center">5 phút</td><td>Baseline (mốc yêu cầu)</td></tr>
+  <tr><td class="center">2</td><td class="center bold">534</td><td class="center">8.000</td><td class="center">5 phút</td><td>Bắt đầu vượt tải</td></tr>
+  <tr><td class="center">3</td><td class="center bold">667</td><td class="center">10.000</td><td class="center">5 phút</td><td>Quan sát suy giảm</td></tr>
+  <tr><td class="center">4</td><td class="center bold">834</td><td class="center">12.500</td><td class="center">5 phút</td><td>Tìm điểm gãy</td></tr>
+  <tr><td class="center">5</td><td class="center bold">1.000+</td><td class="center">15.000+</td><td class="center">5 phút</td><td>Xác nhận điểm gãy</td></tr>
+</table>
+
+<div class="info-box-orange"><strong>Mục tiêu:</strong> Xác định chính xác mốc VU nào hệ thống xuất hiện lỗi 502/504 hoặc thời gian phản hồi vượt 10 giây. Điểm đó chính là <strong>Điểm gãy của hệ thống</strong>.</div>
+
+<!-- ═══════ 4. TỔNG HỢP ═══════ -->
+<h2>4. TỔNG HỢP CẤU HÌNH k6</h2>
+
+<table>
+  <tr><th>Kịch bản</th><th class="center">VU</th><th class="center">Iterations</th><th class="center">Sleep</th><th class="center">≈ CCU</th><th>Loại test</th></tr>
+  <tr><td>3.1 Load 1K CCU</td><td class="center bold">67</td><td class="center">1.000</td><td class="center">1s</td><td class="center">1.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+  <tr><td>3.2 Load 2K CCU</td><td class="center bold">134</td><td class="center">2.000</td><td class="center">1s</td><td class="center">2.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+  <tr><td>3.3 Load 7K CCU</td><td class="center bold">467</td><td class="center">7.000</td><td class="center">1s</td><td class="center">7.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+  <tr><td>3.4 Stress (tìm gãy)</td><td class="center bold">467→1.000</td><td class="center">Liên tục</td><td class="center">1s</td><td class="center">7K→15K</td><td><span class="badge badge-stress">Stress Test</span></td></tr>
+</table>
+
+<!-- ═══════ 5. TIÊU CHÍ ═══════ -->
+<h2>5. TIÊU CHÍ ĐÁNH GIÁ (Pass/Fail Criteria)</h2>
+
+<table>
+  <tr><th>Chỉ số</th><th class="center">Load Test (1K/2K/7K CCU)</th><th class="center">Stress Test (vượt 7K CCU)</th></tr>
+  <tr><td><strong>Thời gian phản hồi TB (Avg)</strong></td><td class="center">≤ 5.000 ms</td><td class="center">≤ 10.000 ms</td></tr>
+  <tr><td><strong>Server Processing (TTFB) P95</strong></td><td class="center">≤ 8.000 ms</td><td class="center">≤ 15.000 ms</td></tr>
+  <tr><td><strong>Thời gian phản hồi P95</strong></td><td class="center">≤ 10.000 ms</td><td class="center">≤ 20.000 ms</td></tr>
+  <tr><td><strong>Tỷ lệ lỗi HTTP</strong></td><td class="center">≤ 1%</td><td class="center">Ghi nhận mốc &gt; 10%</td></tr>
+  <tr><td><strong>Trạng thái hệ thống</strong></td><td class="center">Hoạt động bình thường</td><td class="center">Xác định ngưỡng sập</td></tr>
+</table>
+
+<div class="info-box-green">
+  <strong>Giải thích chỉ số:</strong><br>
+  • <strong>HTTP Duration:</strong> Tổng thời gian request (mạng + server)<br>
+  • <strong>Server TTFB:</strong> Thời gian server xử lý thuần túy — <em>chỉ số chính xác nhất</em><br>
+  • <strong>P95:</strong> 95% request nhanh hơn giá trị này (loại bỏ outlier)<br>
+  • <strong>P99:</strong> 99% request nhanh hơn giá trị này
+</div>
+
+<div class="footer">
+  Tài liệu Kiểm Thử Hiệu Năng — Phiên bản 2.0 — 22/05/2026<br>
+  Công cụ: Grafana k6 | Dashboard: k6-dashboard v1.0
+</div>
+
+</body>
+</html>

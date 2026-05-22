@@ -1,0 +1,347 @@
+{
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [
+      {
+        "id": "27cb8b8956f90427292cd0939d5e82d2",
+        "groups": [],
+        "checks": [
+            {
+              "path": "::01 Dangnhap::POST /api/user/login: status is 2xx/3xx",
+              "id": "600cac57619eea3ef5551da54b87b67a",
+              "passes": 50,
+              "fails": 0,
+              "name": "POST /api/user/login: status is 2xx/3xx"
+            },
+            {
+              "fails": 0,
+              "name": "POST /api/user/login: not unauthorized",
+              "path": "::01 Dangnhap::POST /api/user/login: not unauthorized",
+              "id": "148468357e9d7f9a88645928019d9fcc",
+              "passes": 50
+            },
+            {
+              "name": "Dangnhap: HTTP 200",
+              "path": "::01 Dangnhap::Dangnhap: HTTP 200",
+              "id": "1af495f0a91fe3238df9c5b693b92284",
+              "passes": 50,
+              "fails": 0
+            },
+            {
+              "name": "Dangnhap: has access token",
+              "path": "::01 Dangnhap::Dangnhap: has access token",
+              "id": "72809a019ae5cc457763d9987131b4c9",
+              "passes": 50,
+              "fails": 0
+            }
+          ],
+        "name": "01 Dangnhap",
+        "path": "::01 Dangnhap"
+      },
+      {
+        "name": "02 ThongtinKhoahoc",
+        "path": "::02 ThongtinKhoahoc",
+        "id": "03883ec90b9eba3ea8685e06f1edf59c",
+        "groups": [],
+        "checks": []
+      },
+      {
+        "path": "::03 Browser recording - home and course overview",
+        "id": "9a602f1a0785e0ce80b923145a2328cb",
+        "groups": [],
+        "checks": [
+            {
+              "id": "5a690c60e9b0da96fed9ce98c31856ef",
+              "passes": 50,
+              "fails": 0,
+              "name": "GET /api/course/get-detail: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/course/get-detail: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: not unauthorized",
+              "id": "64f55269247bbe606bd2c5041f65f330",
+              "passes": 50,
+              "fails": 0
+            }
+          ],
+        "name": "03 Browser recording - home and course overview"
+      },
+      {
+        "id": "d1d2217c74cb3c186233b38c38e9ba3b",
+        "groups": [],
+        "checks": [],
+        "name": "04 Browser recording - course learning detail",
+        "path": "::04 Browser recording - course learning detail"
+      }
+    ],
+    "checks": []
+  },
+  "options": {
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": "",
+    "noColor": false
+  },
+  "state": {
+    "testRunDurationMs": 12169.1337,
+    "isStdOutTTY": false,
+    "isStdErrTTY": false
+  },
+  "metrics": {
+    "http_req_blocked": {
+      "values": {
+        "avg": 3.480917,
+        "min": 0,
+        "med": 0,
+        "max": 74.1483,
+        "p(90)": 0,
+        "p(95)": 3.34326499999981
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "api_failures": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 100
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 99.92252,
+        "p(95)": 111.66465999999998,
+        "avg": 93.687579,
+        "min": 73.4077,
+        "med": 88.03915,
+        "max": 391.9541
+      }
+    },
+    "testgov2_request_duration": {
+      "type": "trend",
+      "contains": "default",
+      "values": {
+        "med": 88.5,
+        "max": 392,
+        "p(90)": 111.80000000000007,
+        "p(95)": 152.49999999999997,
+        "avg": 97.12,
+        "min": 73
+      },
+      "thresholds": {
+        "p(95)<5000": {
+          "ok": true
+        }
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "min": 2,
+        "max": 5,
+        "value": 2
+      }
+    },
+    "testgov2_api_calls": {
+      "values": {
+        "count": 100,
+        "rate": 8.217511818446042
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 1245.37442,
+        "p(95)": 1259.0428749999999,
+        "avg": 1194.8984639999999,
+        "min": 1154.6689,
+        "med": 1179.7337,
+        "max": 1485.134
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 100,
+        "rate": 8.217511818446042
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 1,
+        "passes": 300,
+        "fails": 0
+      }
+    },
+    "group_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 48.622960000000006,
+        "min": 0,
+        "med": 36.95575,
+        "max": 392.4784,
+        "p(90)": 96.86033,
+        "p(95)": 111.66465999999987
+      }
+    },
+    "login_failures": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 50
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.032665,
+        "min": 0,
+        "med": 0,
+        "max": 0.9752,
+        "p(90)": 0,
+        "p(95)": 0.013339999999999241
+      }
+    },
+    "iterations": {
+      "contains": "default",
+      "values": {
+        "count": 50,
+        "rate": 4.108755909223021
+      },
+      "type": "counter"
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 88.03915,
+        "max": 391.9541,
+        "p(90)": 99.92252,
+        "p(95)": 111.66465999999998,
+        "avg": 93.687579,
+        "min": 73.4077
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 16.1965,
+        "p(90)": 0,
+        "p(95)": 0.7103799999999596,
+        "avg": 0.750158,
+        "min": 0,
+        "med": 0
+      }
+    },
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 23.1325,
+        "p(90)": 0,
+        "p(95)": 0.8919199999999493,
+        "avg": 0.989794,
+        "min": 0,
+        "med": 0
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 0.5165299999999999,
+        "avg": 0.07092,
+        "min": 0,
+        "med": 0,
+        "max": 0.9893,
+        "p(90)": 0.2632600000000001
+      }
+    },
+    "data_sent": {
+      "values": {
+        "rate": 6130.674692151669,
+        "count": 74605
+      },
+      "type": "counter",
+      "contains": "data"
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 212557,
+        "rate": 17466.89659593435
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 5,
+        "min": 5,
+        "max": 5
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 391.9541,
+        "p(90)": 99.92252,
+        "p(95)": 111.66465999999998,
+        "avg": 93.58399399999999,
+        "min": 73.2446,
+        "med": 88.03915
+      }
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "passes": 0,
+        "fails": 100
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    }
+  }
+}

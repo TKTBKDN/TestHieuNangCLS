@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Kịch Bản Kiểm Thử Hiệu Năng Hệ Thống LMS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f97316;
+      --text: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --bg: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 50px;
+    }
+
+    /* ── Header ── */
+    .doc-header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 3px solid var(--primary);
+    }
+
+    .doc-header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .doc-header .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .doc-header .meta-grid .label {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── Sections ── */
+    .section { margin-bottom: 28px; }
+
+    h2 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3 { font-size: 14px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
+    h4 { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin: 12px 0 6px; }
+
+    p { margin-bottom: 8px; }
+    ul, ol { margin: 6px 0 12px 20px; }
+    li { margin-bottom: 4px; }
+    strong { font-weight: 600; }
+
+    code {
+      background: #eef2ff;
+      color: var(--primary-dark);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 11.5px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+
+    /* ── Tables ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 12px;
+    }
+
+    thead th {
+      background: var(--primary-dark);
+      color: white;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11.5px;
+      white-space: nowrap;
+    }
+
+    thead th:first-child { border-radius: 6px 0 0 0; }
+    thead th:last-child { border-radius: 0 6px 0 0; }
+
+    tbody td {
+      padding: 7px 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    tbody tr:nth-child(even) { background: var(--bg-subtle); }
+    tbody tr:hover { background: #eef2ff; }
+
+    .center { text-align: center; }
+
+    /* ── Info boxes ── */
+    .info-box {
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .info-box.blue { background: #eff6ff; border-left: 4px solid var(--primary); color: #1e40af; }
+    .info-box.orange { background: #fff7ed; border-left: 4px solid var(--warning); color: #9a3412; }
+    .info-box.green { background: #ecfdf5; border-left: 4px solid var(--success); color: #065f46; }
+    .info-box.red { background: #fef2f2; border-left: 4px solid var(--danger); color: #991b1b; }
+
+    .formula-box {
+      background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+      border: 1px solid #c7d2fe;
+      padding: 14px 20px;
+      border-radius: 8px;
+      margin: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-post { background: #dcfce7; color: #166534; }
+    .badge-get { background: #dbeafe; color: #1e40af; }
+    .badge-patch { background: #fef3c7; color: #92400e; }
+    .badge-load { background: #dbeafe; color: #1e40af; }
+    .badge-stress { background: #ffedd5; color: #9a3412; }
+
+    /* ── Scenario cards ── */
+    .scenario-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .scenario-header {
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-header.load { background: linear-gradient(135deg, #eff6ff, #dbeafe); color: #1e40af; border-bottom: 2px solid #93c5fd; }
+    .scenario-header.stress { background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #9a3412; border-bottom: 2px solid #fdba74; }
+
+    .scenario-body { padding: 12px 16px; }
+
+    .param-grid {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 4px 12px;
+      font-size: 12.5px;
+    }
+
+    .param-grid .param-label { font-weight: 600; color: var(--text-secondary); }
+    .param-grid .param-value { color: var(--text); }
+    .param-grid .param-value.highlight { font-weight: 700; color: var(--primary-dark); }
+
+    /* ── Solution cards ── */
+    .solution-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 10px 0;
+    }
+
+    .solution-card h4 { margin: 0 0 6px; color: var(--primary-dark); }
+
+    @media print {
+      body { font-size: 12px; }
+      .container { padding: 20px 30px; }
+      .scenario-card { break-inside: avoid; }
+      .solution-card { break-inside: avoid; }
+      table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ═══════ HEADER ═══════ -->
+    <div class="doc-header">
+      <h1>📋 KỊCH BẢN KIỂM THỬ HIỆU NĂNG HỆ THỐNG LMS</h1>
+      <div class="meta-grid">
+        <div><span class="label">Dự án:</span> Kiểm thử hiệu năng hệ thống đào tạo trực tuyến (LMS)</div>
+        <div><span class="label">Công cụ:</span> Grafana k6</div>
+        <div><span class="label">Mục tiêu:</span> Load Test (1.000 / 2.000 / 7.000 CCU) & Stress Test</div>
+        <div><span class="label">Ngày cập nhật:</span> 22/05/2026</div>
+      </div>
+    </div>
+
+    <!-- ═══════ 1. MỤC TIÊU ═══════ -->
+    <div class="section">
+      <h2>1. MỤC TIÊU KIỂM THỬ (Theo yêu cầu khách hàng)</h2>
+      <ol>
+        <li><strong>Load Test (Kiểm thử tải):</strong>
+          <ul><li>Đánh giá khả năng đáp ứng và đo lường tài nguyên tiêu hao (CPU/RAM/Network) của hệ thống ở các mốc: <strong>1.000 CCU</strong>, <strong>2.000 CCU</strong> và <strong>7.000 CCU</strong>.</li></ul>
+        </li>
+        <li><strong>Stress Test (Kiểm thử giới hạn):</strong>
+          <ul><li>Tăng tải vượt ngưỡng 7.000 CCU để tìm <strong>điểm gãy (Breakdown Point)</strong> — thời điểm hệ thống bắt đầu quá tải, phản hồi cực chậm hoặc sập hoàn toàn (trả lỗi 502/504).</li></ul>
+        </li>
+      </ol>
+    </div>
+
+    <!-- ═══════ QUY ĐỔI VU ↔ CCU ═══════ -->
+    <div class="section">
+      <h2>📐 QUY ĐỔI VU ↔ CCU</h2>
+      <p><strong>VU (Virtual User)</strong> trong k6 là luồng ảo chạy <strong>liên tục không ngừng</strong>, khác với <strong>CCU (Concurrent User)</strong> là người dùng thật có thời gian đọc, suy nghĩ (~15 giây) giữa các thao tác.</p>
+      
+      <div class="formula-box">
+        VU = CCU ÷ (Think-time thực tế ÷ Sleep trong k6)<br>
+        <span style="font-size:12px; font-weight:400; color:#4338ca;">Với Think-time ≈ 15s, Sleep k6 = 1s → <strong>1 VU ≈ 15 CCU</strong></span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th class="center">CCU mục tiêu</th>
+            <th class="center">VU cấu hình k6 (sleep=1s)</th>
+            <th class="center">Giải thích</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="center">1.000</td><td class="center"><strong>67 VU</strong></td><td class="center">67 × 15 ≈ 1.000 CCU</td></tr>
+          <tr><td class="center">2.000</td><td class="center"><strong>134 VU</strong></td><td class="center">134 × 15 ≈ 2.000 CCU</td></tr>
+          <tr><td class="center">7.000</td><td class="center"><strong>467 VU</strong></td><td class="center">467 × 15 ≈ 7.000 CCU</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 2. API CHI TIẾT ═══════ -->
+    <div class="section">
+      <h2>2. KỊCH BẢN API CHI TIẾT (2 API Nghiệp vụ)</h2>
+      <p>Kịch bản tập trung kiểm thử 2 API cốt lõi của quy trình thi trắc nghiệm:</p>
+      <table>
+        <thead>
+          <tr>
+            <th class="center" style="width:40px">STT</th>
+            <th>Nghiệp vụ</th>
+            <th>API Endpoint</th>
+            <th class="center">Phương thức</th>
+            <th>Mô tả tải</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>1</strong></td>
+            <td><strong>Bắt đầu thi</strong></td>
+            <td><code>/api/examtest/start-exam</code></td>
+            <td class="center"><span class="badge badge-patch">PATCH</span></td>
+            <td>Khởi tạo bài thi trắc nghiệm — API chịu tải cao nhất</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>2</strong></td>
+            <td><strong>Nộp bài thi</strong></td>
+            <td><code>/api/examtest/set-answer-question</code></td>
+            <td class="center"><span class="badge badge-post">POST</span></td>
+            <td>Nộp đáp án từng câu hỏi — ghi dữ liệu vào Database</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 3. CẤU HÌNH KỊCH BẢN ═══════ -->
+    <div class="section">
+      <h2>3. CẤU HÌNH CÁC KỊCH BẢN CHẠY TEST</h2>
+      <p>Để đạt được mục tiêu tính toán tài nguyên và tìm điểm gãy, quá trình test được chia làm các bước độc lập sau:</p>
+
+      <!-- 3.1 -->
+      <div class="scenario-card">
+        <div class="scenario-header load">📊 Kịch bản 3.1: Load Test 1.000 CCU (Tính toán tài nguyên mốc 1)</div>
+        <div class="scenario-body">
+          <div class="param-grid">
+            <div class="param-label">Số lượng VU:</div>
+            <div class="param-value highlight">67 VU (67 × 15 ≈ 1.000 CCU)</div>
+            <div class="param-label">Iterations:</div>
+            <div class="param-value">1.000 lượt (mỗi user thực hiện 1 lượt đầy đủ)</div>
+            <div class="param-label">Sleep:</div>
+            <div class="param-value">1 giây (mô phỏng think-time người dùng thật)</div>
+            <div class="param-label">API:</div>
+            <div class="param-value">Bắt đầu thi + Nộp bài thi</div>
+          </div>
+          <div class="info-box blue"><strong>Mục tiêu:</strong> Đo CPU/RAM/Băng thông trên máy chủ Web và Database khi phục vụ ổn định 1.000 người cùng lúc.</div>
+        </div>
+      </div>
+
+      <!-- 3.2 -->
+      <div class="scenario-card">
+        <div class="scenario-header load">📊 Kịch bản 3.2: Load Test 2.000 CCU (Tính toán tài nguyên mốc 2)</div>
+        <div class="scenario-body">
+          <div class="param-grid">
+            <div class="param-label">Số lượng VU:</div>
+            <div class="param-value highlight">134 VU (134 × 15 ≈ 2.000 CCU)</div>
+            <div class="param-label">Iterations:</div>
+            <div class="param-value">2.000 lượt</div>
+            <div class="param-label">Sleep:</div>
+            <div class="param-value">1 giây</div>
+            <div class="param-label">API:</div>
+            <div class="param-value">Bắt đầu thi + Nộp bài thi</div>
+          </div>
+          <div class="info-box blue"><strong>Mục tiêu:</strong> Đánh giá hiệu năng hệ thống khi tải tăng gấp đôi so với mốc 1. Ghi nhận mức tăng CPU/RAM tương ứng.</div>
+        </div>
+      </div>
+
+      <!-- 3.3 -->
+      <div class="scenario-card">
+        <div class="scenario-header load">📊 Kịch bản 3.3: Load Test 7.000 CCU (Tải đỉnh — mốc 3)</div>
+        <div class="scenario-body">
+          <div class="param-grid">
+            <div class="param-label">Số lượng VU:</div>
+            <div class="param-value highlight">467 VU (467 × 15 ≈ 7.000 CCU)</div>
+            <div class="param-label">Iterations:</div>
+            <div class="param-value">7.000 lượt</div>
+            <div class="param-label">Sleep:</div>
+            <div class="param-value">1 giây</div>
+            <div class="param-label">API:</div>
+            <div class="param-value">Bắt đầu thi + Nộp bài thi</div>
+          </div>
+          <div class="info-box blue"><strong>Mục tiêu:</strong> Đo ngưỡng giới hạn thiết kế hệ thống. Ghi nhận CPU/RAM tối đa để đề xuất cấu hình máy chủ cho khách hàng.</div>
+        </div>
+      </div>
+
+      <!-- 3.4 -->
+      <div class="scenario-card">
+        <div class="scenario-header stress">💥 Kịch bản 3.4: Stress Test tìm điểm gãy (Vượt tải đỉnh)</div>
+        <div class="scenario-body">
+          <p>Tăng dần tải từ 467 VU (7.000 CCU), mỗi bước tương đương +1.000 CCU, duy trì 5 phút/bước để đo trạng thái ổn định:</p>
+          <table>
+            <thead>
+              <tr>
+                <th class="center">Bước</th>
+                <th class="center">VU</th>
+                <th class="center">≈ CCU</th>
+                <th class="center">Duy trì</th>
+                <th>Mục tiêu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="center">1</td><td class="center"><strong>467</strong></td><td class="center">7.000</td><td class="center">5 phút</td><td>Baseline (mốc yêu cầu)</td></tr>
+              <tr><td class="center">2</td><td class="center"><strong>534</strong></td><td class="center">8.000</td><td class="center">5 phút</td><td>Bắt đầu vượt tải</td></tr>
+              <tr><td class="center">3</td><td class="center"><strong>667</strong></td><td class="center">10.000</td><td class="center">5 phút</td><td>Quan sát suy giảm</td></tr>
+              <tr><td class="center">4</td><td class="center"><strong>834</strong></td><td class="center">12.500</td><td class="center">5 phút</td><td>Tìm điểm gãy</td></tr>
+              <tr><td class="center">5</td><td class="center"><strong>1.000+</strong></td><td class="center">15.000+</td><td class="center">5 phút</td><td>Xác nhận điểm gãy</td></tr>
+            </tbody>
+          </table>
+          <div class="info-box orange"><strong>Mục tiêu:</strong> Xác định chính xác mốc VU nào hệ thống xuất hiện lỗi 502/504 hoặc thời gian phản hồi vượt 10 giây. Điểm đó chính là <strong>Điểm gãy của hệ thống</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ 4. TỔNG HỢP ═══════ -->
+    <div class="section">
+      <h2>4. TỔNG HỢP CẤU HÌNH k6</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Kịch bản</th>
+            <th class="center">VU</th>
+            <th class="center">Iterations</th>
+            <th class="center">Sleep</th>
+            <th class="center">≈ CCU</th>
+            <th>Loại test</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>3.1 Load 1K CCU</td><td class="center"><strong>67</strong></td><td class="center">1.000</td><td class="center">1s</td><td class="center">1.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+          <tr><td>3.2 Load 2K CCU</td><td class="center"><strong>134</strong></td><td class="center">2.000</td><td class="center">1s</td><td class="center">2.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+          <tr><td>3.3 Load 7K CCU</td><td class="center"><strong>467</strong></td><td class="center">7.000</td><td class="center">1s</td><td class="center">7.000</td><td><span class="badge badge-load">Load Test</span></td></tr>
+          <tr><td>3.4 Stress (tìm gãy)</td><td class="center"><strong>467→1.000</strong></td><td class="center">Liên tục</td><td class="center">1s</td><td class="center">7K→15K</td><td><span class="badge badge-stress">Stress Test</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ═══════ 5. TIÊU CHÍ ═══════ -->
+    <div class="section">
+      <h2>5. TIÊU CHÍ ĐÁNH GIÁ (Pass/Fail Criteria)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Chỉ số</th>
+            <th class="center">Load Test (1K/2K/7K CCU)</th>
+            <th class="center">Stress Test (vượt 7K CCU)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Thời gian phản hồi TB (Avg)</strong></td><td class="center">≤ 5.000 ms</td><td class="center">≤ 10.000 ms</td></tr>
+          <tr><td><strong>Server Processing (TTFB) P95</strong></td><td class="center">≤ 8.000 ms</td><td class="center">≤ 15.000 ms</td></tr>
+          <tr><td><strong>Thời gian phản hồi P95</strong></td><td class="center">≤ 10.000 ms</td><td class="center">≤ 20.000 ms</td></tr>
+          <tr><td><strong>Tỷ lệ lỗi HTTP</strong></td><td class="center">≤ 1%</td><td class="center">Ghi nhận mốc > 10%</td></tr>
+          <tr><td><strong>Trạng thái hệ thống</strong></td><td class="center">Hoạt động bình thường</td><td class="center">Xác định ngưỡng sập</td></tr>
+        </tbody>
+      </table>
+
+      <div class="info-box green">
+        <strong>Giải thích chỉ số:</strong><br>
+        • <strong>HTTP Duration:</strong> Tổng thời gian request (mạng + server)<br>
+        • <strong>Server TTFB:</strong> Thời gian server xử lý thuần túy — <em>chỉ số chính xác nhất</em><br>
+        • <strong>P95:</strong> 95% request nhanh hơn giá trị này (loại bỏ outlier)<br>
+        • <strong>P99:</strong> 99% request nhanh hơn giá trị này
+      </div>
+    </div>
+
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <div style="text-align:center; margin-top:32px; padding-top:16px; border-top:2px solid var(--border); color:var(--text-muted); font-size:11px;">
+      Tài liệu Kiểm Thử Hiệu Năng — Phiên bản 2.0 — 22/05/2026<br>
+      Công cụ: Grafana k6 | Dashboard: k6-dashboard v1.0
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,727 @@
+{
+  "options": {
+    "noColor": false,
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": ""
+  },
+  "state": {
+    "isStdOutTTY": false,
+    "isStdErrTTY": false,
+    "testRunDurationMs": 51951.5824
+  },
+  "metrics": {
+    "http_req_blocked": {
+      "contains": "time",
+      "values": {
+        "p(95)": 0,
+        "avg": 0.1301644827586207,
+        "min": 0,
+        "med": 0,
+        "max": 80.9857,
+        "p(90)": 0
+      },
+      "type": "trend"
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 91.6652,
+        "p(95)": 100.745035,
+        "avg": 52.20462886206894,
+        "min": 25.7154,
+        "med": 41.3102,
+        "max": 360.1009
+      }
+    },
+    "checks": {
+      "values": {
+        "rate": 0.9836666666666667,
+        "passes": 5902,
+        "fails": 98
+      },
+      "type": "rate",
+      "contains": "default"
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 41.482600000000005,
+        "max": 360.1009,
+        "p(90)": 92.21115999999999,
+        "p(95)": 101.087155,
+        "avg": 52.372928862069024,
+        "min": 25.7154
+      }
+    },
+    "http_req_receiving": {
+      "values": {
+        "avg": 0.13708893103448277,
+        "min": 0,
+        "med": 0,
+        "max": 18.1762,
+        "p(90)": 0.5512799999999999,
+        "p(95)": 0.8763499999999997
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 92.3478,
+        "p(95)": 101.13607999999998,
+        "avg": 52.73159760885089,
+        "min": 25.7154,
+        "med": 41.80535,
+        "max": 360.1009
+      }
+    },
+    "data_sent": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 514008,
+        "rate": 9893.981593138153
+      }
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 1872553,
+        "rate": 36044.19564321105
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.024106206896551723,
+        "min": 0,
+        "med": 0,
+        "max": 14.4299,
+        "p(90)": 0,
+        "p(95)": 0
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.03121106896551725,
+        "min": 0,
+        "med": 0,
+        "max": 1.3957,
+        "p(90)": 0,
+        "p(95)": 0.11420499999999671
+      }
+    },
+    "testgov2_api_calls": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 2900,
+        "rate": 55.82120632383278
+      }
+    },
+    "login_failures": {
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      },
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 100,
+        "rate": 0,
+        "passes": 0
+      }
+    },
+    "http_req_tls_handshaking": {
+      "values": {
+        "avg": 0.037854,
+        "min": 0,
+        "med": 0,
+        "max": 27.3473,
+        "p(90)": 0,
+        "p(95)": 0
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "group_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 381.20276375000026,
+        "min": 29.1515,
+        "med": 270.09085000000005,
+        "max": 1495.9095,
+        "p(90)": 929.7459699999999,
+        "p(95)": 1029.5962899999997
+      }
+    },
+    "http_reqs": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 2900,
+        "rate": 55.82120632383278
+      }
+    },
+    "iteration_duration": {
+      "values": {
+        "min": 2301.9877,
+        "med": 2469.90765,
+        "max": 3379.0474,
+        "p(90)": 2722.99267,
+        "p(95)": 2820.01511,
+        "avg": 2525.2921669999982
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "api_failures": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.03379310344827586,
+        "passes": 98,
+        "fails": 2802
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_failed": {
+      "contains": "default",
+      "values": {
+        "rate": 0.03379310344827586,
+        "passes": 98,
+        "fails": 2802
+      },
+      "thresholds": {
+        "rate<0.10": {
+          "ok": true
+        }
+      },
+      "type": "rate"
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 5,
+        "min": 5,
+        "max": 5
+      }
+    },
+    "testgov2_request_duration": {
+      "type": "trend",
+      "contains": "default",
+      "values": {
+        "avg": 52.539655172413795,
+        "min": 26,
+        "med": 41.5,
+        "max": 360,
+        "p(90)": 92,
+        "p(95)": 101
+      },
+      "thresholds": {
+        "p(95)<5000": {
+          "ok": true
+        }
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 1,
+        "max": 5
+      }
+    },
+    "iterations": {
+      "contains": "default",
+      "values": {
+        "count": 100,
+        "rate": 1.9248691835804408
+      },
+      "type": "counter"
+    }
+  },
+  "root_group": {
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [
+      {
+        "name": "01 Dangnhap",
+        "path": "::01 Dangnhap",
+        "id": "27cb8b8956f90427292cd0939d5e82d2",
+        "groups": [],
+        "checks": [
+            {
+              "path": "::01 Dangnhap::POST /api/user/login: status is 2xx/3xx",
+              "id": "600cac57619eea3ef5551da54b87b67a",
+              "passes": 100,
+              "fails": 0,
+              "name": "POST /api/user/login: status is 2xx/3xx"
+            },
+            {
+              "name": "POST /api/user/login: not unauthorized",
+              "path": "::01 Dangnhap::POST /api/user/login: not unauthorized",
+              "id": "148468357e9d7f9a88645928019d9fcc",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "Dangnhap: HTTP 200",
+              "path": "::01 Dangnhap::Dangnhap: HTTP 200",
+              "id": "1af495f0a91fe3238df9c5b693b92284",
+              "passes": 100
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "Dangnhap: has access token",
+              "path": "::01 Dangnhap::Dangnhap: has access token",
+              "id": "72809a019ae5cc457763d9987131b4c9"
+            }
+          ]
+      },
+      {
+        "path": "::02 ThongtinKhoahoc",
+        "id": "03883ec90b9eba3ea8685e06f1edf59c",
+        "groups": [],
+        "checks": [
+            {
+              "id": "ce1a82929ea91bb32ebefedee3daf7c9",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/ExperienceUser/get-roll-call: status is 2xx/3xx",
+              "path": "::02 ThongtinKhoahoc::GET /api/ExperienceUser/get-roll-call: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/ExperienceUser/get-roll-call: not unauthorized",
+              "path": "::02 ThongtinKhoahoc::GET /api/ExperienceUser/get-roll-call: not unauthorized",
+              "id": "b49dac5761e69a5ac4a2a8f799e24784",
+              "passes": 100,
+              "fails": 0
+            }
+          ],
+        "name": "02 ThongtinKhoahoc"
+      },
+      {
+        "name": "03 Browser recording - home and course overview",
+        "path": "::03 Browser recording - home and course overview",
+        "id": "9a602f1a0785e0ce80b923145a2328cb",
+        "groups": [],
+        "checks": [
+            {
+              "id": "5a690c60e9b0da96fed9ce98c31856ef",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/course/get-detail: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/course/get-detail: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-detail: not unauthorized",
+              "id": "64f55269247bbe606bd2c5041f65f330",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "path": "::03 Browser recording - home and course overview::GET /api/user/get-detail-user: status is 2xx/3xx",
+              "id": "1f219c2882706fc2a66de6809b319b38",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/user/get-detail-user: status is 2xx/3xx"
+            },
+            {
+              "id": "bb23abfc54777a8f47de9ac4cad57ff8",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/user/get-detail-user: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/user/get-detail-user: not unauthorized"
+            },
+            {
+              "name": "GET /api/course/get-course-evaluation-criteria: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-course-evaluation-criteria: status is 2xx/3xx",
+              "id": "92f660105c022028250435d453c9bf75",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "id": "4e4b5fd49005817e48fa3da986efa7c0",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/course/get-course-evaluation-criteria: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-course-evaluation-criteria: not unauthorized"
+            },
+            {
+              "name": "GET /api/course/get-general-evaluation: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-general-evaluation: status is 2xx/3xx",
+              "id": "37689626b87de93b6c4a72b4457f5858",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/get-general-evaluation: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-general-evaluation: not unauthorized",
+              "id": "1b0ee8b27f31d256f16683ab1b4dc4ca",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "id": "35fa7526d55ef590f2372a83fd7980f4",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/course/get-paging-user-evaluation: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-paging-user-evaluation: status is 2xx/3xx"
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/course/get-paging-user-evaluation: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-paging-user-evaluation: not unauthorized",
+              "id": "05f6b7cc584abf77e1cb9d59ba96b2b2",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/course/check-user-exist: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/check-user-exist: status is 2xx/3xx",
+              "id": "989b649c2786d74c754414f6704bb16f",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/course/check-user-exist: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/check-user-exist: not unauthorized",
+              "id": "b0c5e6594baf2d5653f22072e66202b1",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/coursecontent/list-user-content-by-courseId: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/coursecontent/list-user-content-by-courseId: status is 2xx/3xx",
+              "id": "aaf9f0af4f1ef690511eeb01bac66ec5",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/coursecontent/list-user-content-by-courseId: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/coursecontent/list-user-content-by-courseId: not unauthorized",
+              "id": "0b223a4f992bcbe570f51e8451339300",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/topic/get-by-id: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/topic/get-by-id: status is 2xx/3xx",
+              "id": "6ccf7aa835a0026234e6cb018120d6f3",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/topic/get-by-id: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/topic/get-by-id: not unauthorized",
+              "id": "bb854060d72f6bf8da87e542d2088f62",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/get-document: status is 2xx/3xx",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-document: status is 2xx/3xx",
+              "id": "7c23e6e155be7cc419d7ee278bba8a15",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/get-document: not unauthorized",
+              "path": "::03 Browser recording - home and course overview::GET /api/course/get-document: not unauthorized",
+              "id": "84d01be47cde273e91c9a2eeed2e8667",
+              "passes": 100,
+              "fails": 0
+            }
+          ]
+      },
+      {
+        "groups": [],
+        "checks": [
+            {
+              "fails": 0,
+              "name": "GET /api/user/basic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/basic: status is 2xx/3xx",
+              "id": "0d14b38be06d99691b16c14c295cae65",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/user/basic: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/basic: not unauthorized",
+              "id": "d060490e3baa539dcfdb323741b7418e",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/User/get-list-contact: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/User/get-list-contact: status is 2xx/3xx",
+              "id": "f9b283f635387dc350ccd4bd73b9e5d8",
+              "passes": 100
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/User/get-list-contact: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/User/get-list-contact: not unauthorized",
+              "id": "1a9c762580f1af47324e6cb127151853",
+              "passes": 100
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/VersionReleases/get-paging: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/VersionReleases/get-paging: status is 2xx/3xx",
+              "id": "8909954eb600b7a48b2beb2ad7b440ff",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/VersionReleases/get-paging: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/VersionReleases/get-paging: not unauthorized",
+              "id": "e7505758888808e08a063c9148d7c2d8",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "POST /api/User/login-log: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/User/login-log: status is 2xx/3xx",
+              "id": "4b2e1186527602de6fd355c0b3ab1e81"
+            },
+            {
+              "name": "POST /api/User/login-log: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::POST /api/User/login-log: not unauthorized",
+              "id": "c2c7016cfa91aabe90ff0fd7243bc021",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/menu/get-menu-by-role: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/menu/get-menu-by-role: status is 2xx/3xx",
+              "id": "77b8cb72585e3d509fcda3c33468090a",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/menu/get-menu-by-role: not unauthorized",
+              "id": "65a9e988828e7ea07926b3d77d8a97a5",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/menu/get-menu-by-role: not unauthorized"
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/CourseUser/my-courses: status is 2xx/3xx",
+              "id": "a4954e8fface6e7de9eed65cdff07d48",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/CourseUser/my-courses: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/CourseUser/my-courses: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/CourseUser/my-courses: not unauthorized",
+              "id": "913cac64f0d44eac1d56984bed460a84",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/Notification/count-noti-unseen: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Notification/count-noti-unseen: status is 2xx/3xx",
+              "id": "b2f2d8638a5708e32734901253883fa8"
+            },
+            {
+              "name": "GET /api/Notification/count-noti-unseen: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Notification/count-noti-unseen: not unauthorized",
+              "id": "66df0c87abd32fc8130c8d876b94dff7",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/Topic/get-information-topic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Topic/get-information-topic: status is 2xx/3xx",
+              "id": "5de0322c74531a3c56fa244877dfda59",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/Topic/get-information-topic: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Topic/get-information-topic: not unauthorized",
+              "id": "083d56abab90a8f272070ea74d784285",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/learner/get-paging: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/course/learner/get-paging: status is 2xx/3xx",
+              "id": "81af4d561d220ca04b40c7b522a999e9",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/course/learner/get-paging: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/course/learner/get-paging: not unauthorized",
+              "id": "3bcc77419f2a6cfea08146a9865f2a01",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/check-course-require: status is 2xx/3xx",
+              "id": "298af8fdaa21e05c9084e4284547814e",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/learner/check-course-require: status is 2xx/3xx"
+            },
+            {
+              "name": "GET /api/learner/check-course-require: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/check-course-require: not unauthorized",
+              "id": "c67e7694c282fb9cb84fd7d0d74609f0",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "id": "53153cf86b3b7d7359051b47e470dfa1",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/learner/get-course-proficiency-require: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-proficiency-require: status is 2xx/3xx"
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/learner/get-course-proficiency-require: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-proficiency-require: not unauthorized",
+              "id": "5557913668df1261511f1abf53a1a915",
+              "passes": 100
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/Learner/list-my-course: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Learner/list-my-course: status is 2xx/3xx",
+              "id": "c1db9582793cf11b45a56cd2ae26a83f"
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/Learner/list-my-course: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Learner/list-my-course: not unauthorized",
+              "id": "017fd6e3e6ae4e10c2c0a9e516e4f6f9",
+              "passes": 100
+            },
+            {
+              "name": "GET /api/user/get-info-user-by-ids: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/get-info-user-by-ids: status is 2xx/3xx",
+              "id": "afdadc2cad1ef764694688f2f8590e45",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "id": "a48587eb3832e47bafc9558573e72e1c",
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/user/get-info-user-by-ids: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/user/get-info-user-by-ids: not unauthorized"
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/learner/get-course-content-detail: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-content-detail: status is 2xx/3xx",
+              "id": "299f1a61da9a52b712aa94edcb8f77ea"
+            },
+            {
+              "name": "GET /api/learner/get-course-content-detail: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/learner/get-course-content-detail: not unauthorized",
+              "id": "b1e7b474c81662c8d8aa847a1ea7d2ee",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "POST /api/learner/set-complete-course-content-basic: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/set-complete-course-content-basic: status is 2xx/3xx",
+              "id": "7d11e73c2ad27f7093967eec371548ca",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "POST /api/learner/set-complete-course-content-basic: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/set-complete-course-content-basic: not unauthorized",
+              "id": "60c558200a8000c992645773683f05fc",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "name": "GET /api/Course/get-list-course-by-ids: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/Course/get-list-course-by-ids: status is 2xx/3xx",
+              "id": "def4aab1ec719f6705c851aa0df9044c",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "passes": 100,
+              "fails": 0,
+              "name": "GET /api/Course/get-list-course-by-ids: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/Course/get-list-course-by-ids: not unauthorized",
+              "id": "87f8f89e0d33534504f45d22c7d8818f"
+            },
+            {
+              "name": "GET /api/certification/get-certification-user: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::GET /api/certification/get-certification-user: status is 2xx/3xx",
+              "id": "a3f023981d407e4b40780998afca5fe5",
+              "passes": 100,
+              "fails": 0
+            },
+            {
+              "fails": 0,
+              "name": "GET /api/certification/get-certification-user: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::GET /api/certification/get-certification-user: not unauthorized",
+              "id": "2f02c3f86a2b325d142aec59e113752f",
+              "passes": 100
+            },
+            {
+              "name": "POST /api/learner/update-course-content-user: status is 2xx/3xx",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/update-course-content-user: status is 2xx/3xx",
+              "id": "ceaf8059cc666a34ce85d72645e4fcbb",
+              "passes": 2,
+              "fails": 98
+            },
+            {
+              "name": "POST /api/learner/update-course-content-user: not unauthorized",
+              "path": "::04 Browser recording - course learning detail::POST /api/learner/update-course-content-user: not unauthorized",
+              "id": "bbd0d85948d83c7621ed6b60ea3e44b8",
+              "passes": 100,
+              "fails": 0
+            }
+          ],
+        "name": "04 Browser recording - course learning detail",
+        "path": "::04 Browser recording - course learning detail",
+        "id": "d1d2217c74cb3c186233b38c38e9ba3b"
+      }
+    ],
+    "checks": [],
+    "name": ""
+  }
+}
