@@ -215,15 +215,10 @@ export default function () {
   // ★ Login or use saved token
   let token = null;
   if (USE_SAVED_TOKENS) {
-    // 1. Try from Excel row (already merged by server)
-    if (USE_EXCEL && userRow && userRow.token) {
-      token = userRow.token;
-    } else {
-      // 2. Try from tokens_cache.json (loaded at init, no HTTP needed)
-      const searchKey = String(email).trim().toLowerCase();
-      if (tokensCacheMap[searchKey]) {
-        token = tokensCacheMap[searchKey];
-      }
+    // Try from tokens_cache.json (loaded at init, no HTTP needed)
+    const searchKey = String(email).trim().toLowerCase();
+    if (tokensCacheMap[searchKey]) {
+      token = tokensCacheMap[searchKey];
     }
     // If no saved token found, fall back to fresh login
     if (!token) {

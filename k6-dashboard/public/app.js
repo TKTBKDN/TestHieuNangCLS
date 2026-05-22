@@ -1523,7 +1523,7 @@
         if (d.count > 0) {
           excelInfo.classList.remove('hidden');
           excelFileName.textContent = 'Dữ liệu đã lưu trên máy chủ';
-          excelFileDetails.textContent = d.count + ' học viên (' + d.tokenCount + ' token)';
+          excelFileDetails.textContent = d.count + ' học viên (' + d.tokenCount + ' token đã lưu) | Tổng cache: ' + d.totalTokens + ' token';
           useSavedTokensGroup.classList.remove('hidden');
           excelActionsGroup.classList.remove('hidden');
           if (d.tokenCount > 0) {

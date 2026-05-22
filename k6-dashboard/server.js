@@ -432,7 +432,6 @@ app.post('/api/save-excel-data', (req, res) => {
     if (userKey) {
       const searchKey = String(userKey).trim().toLowerCase();
       if (tokensCache[searchKey]) {
-        cleanUser.token = tokensCache[searchKey];
         matchedCount++;
       }
     }
@@ -445,8 +444,22 @@ app.post('/api/save-excel-data', (req, res) => {
 
 app.get('/api/get-excel-data', (req, res) => {
   const data = readUsersData();
-  const tokenCount = data.filter(u => u.token).length;
-  res.json({ count: data.length, tokenCount, users: data.slice(0, 100) });
+  const allTokens = readTokensCache();
+  
+  // Count how many Excel users actually have a token in the cache
+  let tokenCount = 0;
+  data.forEach(u => {
+    const userKey = u.User || u.email || u.username;
+    if (userKey) {
+      const searchKey = String(userKey).trim().toLowerCase();
+      if (allTokens[searchKey]) {
+        tokenCount++;
+      }
+    }
+  });
+
+  const totalTokens = Object.keys(allTokens).length;
+  res.json({ count: data.length, tokenCount, totalTokens, users: data.slice(0, 100) });
 });
 
 // ---------- Batched token save (high-perf for k6 concurrency) ----------
@@ -487,17 +500,6 @@ app.post('/api/save-token', (req, res) => {
     return res.status(400).json({ error: 'Missing email or token' });
   }
   const searchKey = String(email).trim().toLowerCase();
-
-  // Update users_data in RAM only (no disk I/O)
-  const data = readUsersData();
-  for (let i = 0; i < data.length; i++) {
-    const userKey = data[i].User || data[i].email || data[i].username;
-    if (userKey && String(userKey).trim().toLowerCase() === searchKey) {
-      data[i].token = token;
-      usersDirty = true;
-      break;
-    }
-  }
 
   // Update token cache in RAM only (no disk I/O)
   const tokensCache = readTokensCache();
@@ -722,7 +724,6 @@ app.post('/api/login-excel', (req, res) => {
             const resJson = await response.json();
             const token = resJson.data && resJson.data.accessToken;
             if (token) {
-              u.token = token;
               const searchKey = String(u.User).trim().toLowerCase();
               tokensCache[searchKey] = token;
               cacheUpdated = true;
@@ -781,7 +782,6 @@ app.post('/api/login-excel', (req, res) => {
         // Throttled writing to disk (at most once every 5 seconds)
         const now = Date.now();
         if (now - lastWriteTime > 5000 || completed === data.length) {
-          writeUsersData(data);
           if (cacheUpdated) {
             writeTokensCache(tokensCache);
             cacheUpdated = false;
@@ -805,7 +805,6 @@ app.post('/api/login-excel', (req, res) => {
     stats.durations = durations;
 
     loginProgress.running = false;
-    writeUsersData(data);
     if (cacheUpdated) {
       writeTokensCache(tokensCache);
     }
